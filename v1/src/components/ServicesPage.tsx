@@ -2,6 +2,7 @@ import { ArrowRight, Check } from "lucide-react";
 import type { Page } from "@/App";
 import EngagementModels from "@/components/EngagementModels";
 import { SERVICES } from "@/content/services";
+import { withBase } from "@/base";
 
 interface ServicesPageProps {
   onNavigate: (page: Page) => void;
@@ -47,7 +48,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                   {service.audience}
                 </p>
                 <a
-                  href={service.path}
+                  href={withBase(service.path)}
                   onClick={(event) => { event.preventDefault(); onNavigate(service.page); }}
                   className="mt-7 inline-flex items-center gap-2 text-sm font-medium text-violet-200 transition-colors hover:text-white"
                 >
@@ -84,7 +85,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
             We will assess the objective, delivery context and constraints, then recommend the smallest credible engagement.
           </p>
           <a
-            href="/contact"
+            href={withBase("/contact")}
             onClick={(event) => { event.preventDefault(); openContact(); }}
             className="primary-cta mt-6 inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold transition-colors"
           >

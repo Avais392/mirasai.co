@@ -1,5 +1,6 @@
 import { ArrowLeft, ArrowRight, BriefcaseBusiness, MapPin } from "lucide-react";
 import { ROLES } from "@/content/careers";
+import { withBase } from "@/base";
 
 interface CareerRolePageProps {
   roleId: string;
@@ -17,7 +18,7 @@ export default function CareerRolePage({ roleId }: CareerRolePageProps) {
       <div className="page-aurora absolute inset-0" />
 
       <div className="relative mx-auto max-w-5xl px-6 lg:px-8">
-        <a href="/careers" className="legal-back inline-flex items-center gap-2 text-sm transition-colors">
+        <a href={withBase("/careers")} className="legal-back inline-flex items-center gap-2 text-sm transition-colors">
           <ArrowLeft className="h-4 w-4" /> All open roles
         </a>
 

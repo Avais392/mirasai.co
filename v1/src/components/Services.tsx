@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { SERVICES, type ServicePageId } from "@/content/services";
+import { withBase } from "@/base";
 
 interface ServicesProps {
   onOpenService: (page: ServicePageId) => void;
@@ -45,7 +46,7 @@ export default function Services({ onOpenService }: ServicesProps) {
                   {service.shortDescription}
                 </p>
                 <a
-                  href={service.path}
+                  href={withBase(service.path)}
                   onClick={(event) => { event.preventDefault(); onOpenService(service.page); }}
                   className="mt-7 inline-flex items-center gap-2 self-start text-sm font-medium text-cyan-100 transition-colors hover:text-white"
                 >

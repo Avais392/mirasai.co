@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X, ArrowRight, Moon, Sun } from "lucide-react";
 import type { Page } from "@/App";
+import { withBase } from "@/base";
 
 interface NavbarProps {
   onNavigate: (page: Page) => void;
@@ -57,13 +58,13 @@ export default function Navbar({ onNavigate, currentPage, onToggleTheme }: Navba
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <a
-            href="/"
+            href={withBase("/")}
             onClick={(event) => { event.preventDefault(); onNavigate("home"); }}
             className="brand-mark group py-1 transition-all duration-300"
             aria-label="Miras AI home"
           >
             <img
-              src="/miras-gold-wordmark.webp"
+              src={withBase("/miras-gold-wordmark.webp")}
               alt="Miras AI"
               width="900"
               height="310"
@@ -77,7 +78,7 @@ export default function Navbar({ onNavigate, currentPage, onToggleTheme }: Navba
             {NAV_LINKS.map((link) => (
               <a
                 key={link.label}
-                href={"path" in link ? link.path : "/#approach"}
+                href={withBase(link.path ?? "/#approach")}
                 onClick={(event) => {
                   event.preventDefault();
                   if (link.page) handlePageNav(link.page);
@@ -104,7 +105,7 @@ export default function Navbar({ onNavigate, currentPage, onToggleTheme }: Navba
               <Moon className="theme-icon-light h-4 w-4" />
             </button>
             <a
-              href="/contact"
+              href={withBase("/contact")}
               onClick={(event) => { event.preventDefault(); handlePageNav("contact"); }}
               className="secondary-cta group flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition-all duration-300"
             >
@@ -133,7 +134,7 @@ export default function Navbar({ onNavigate, currentPage, onToggleTheme }: Navba
             {NAV_LINKS.map((link) => (
               <a
                 key={link.label}
-                href={"path" in link ? link.path : "/#approach"}
+                href={withBase(link.path ?? "/#approach")}
                 onClick={(event) => {
                   event.preventDefault();
                   if (link.page) handlePageNav(link.page);
@@ -156,7 +157,7 @@ export default function Navbar({ onNavigate, currentPage, onToggleTheme }: Navba
               <span className="theme-label-dark">Dark mode</span>
             </button>
             <a
-              href="/contact"
+              href={withBase("/contact")}
               onClick={(event) => { event.preventDefault(); handlePageNav("contact"); }}
               className="secondary-cta flex items-center gap-2 w-full rounded-lg border px-4 py-2.5 text-sm font-medium"
             >

@@ -1,5 +1,6 @@
 import { ArrowRight, BriefcaseBusiness, MapPin } from "lucide-react";
 import { ROLES } from "@/content/careers";
+import { withBase } from "@/base";
 
 export default function CareersPage() {
   return (
@@ -49,7 +50,7 @@ export default function CareersPage() {
                     <p className="mt-4 max-w-3xl leading-relaxed text-gray-300">{role.summary}</p>
                   </div>
                   <a
-                    href={`/careers/${role.id}`}
+                    href={withBase(`/careers/${role.id}`)}
                     className="secondary-cta inline-flex shrink-0 items-center justify-center rounded-lg border px-5 py-3 text-sm font-semibold"
                   >
                     View role

@@ -1,5 +1,6 @@
 import type { FormEvent } from "react";
 import { ArrowRight, CalendarDays, Clock3, Mail } from "lucide-react";
+import { withBase } from "@/base";
 
 const fieldClass =
   "contact-field mt-2 min-w-0 max-w-full w-full rounded-lg border px-4 py-3 text-sm outline-none transition-colors placeholder:text-gray-600";
@@ -150,7 +151,7 @@ export default function Contact({ pageHeading = false }: ContactProps) {
               </p>
               <p className="mt-2 text-center text-xs leading-relaxed text-gray-500">
                 Please do not include passwords, production credentials or regulated data. See our{" "}
-                <a href="/privacy-policy" className="font-medium text-cyan-200 hover:text-white">Privacy Policy</a>.
+                <a href={withBase("/privacy-policy")} className="font-medium text-cyan-200 hover:text-white">Privacy Policy</a>.
               </p>
             </form>
           </div>

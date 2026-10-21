@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import type { Page } from "@/App";
+import { withBase } from "@/base";
 
 interface WorkPageProps {
   onNavigate: (page: Page) => void;
@@ -10,9 +11,9 @@ const WORK = [
     number: "01",
     sector: "Health and fitness",
     name: "AimFit",
-    image: "/projects/aimfit-overview.jpg",
+    image: withBase("/projects/aimfit-overview.jpg"),
     imageAlt: "AimFit product case study showing its mobile workout experience",
-    systemImage: "/projects/aimfit-system.jpg",
+    systemImage: withBase("/projects/aimfit-system.jpg"),
     imageWidth: 832,
     imageHeight: 464,
     systemImageAlt: "AimFit live, recorded and offline media architecture",
@@ -25,9 +26,9 @@ const WORK = [
     number: "02",
     sector: "Telemedicine",
     name: "Your Doctors Online",
-    image: "/projects/ydo-overview.jpg",
+    image: withBase("/projects/ydo-overview.jpg"),
     imageAlt: "Your Doctors Online product case study showing a mobile doctor consultation",
-    systemImage: "/projects/ydo-system.jpg",
+    systemImage: withBase("/projects/ydo-system.jpg"),
     imageWidth: 1024,
     imageHeight: 576,
     systemImageAlt: "Your Doctors Online consultation, EMR, pharmacy and payment integrations",
@@ -90,10 +91,10 @@ export default function WorkPage({ onNavigate }: WorkPageProps) {
         <article className="surface-card mt-8 overflow-hidden rounded-3xl border border-white/[0.08]">
           <div className="grid border-b border-white/[0.08] sm:grid-cols-2">
             <figure className="overflow-hidden border-b border-white/[0.08] sm:border-b-0 sm:border-r">
-              <img src="/projects/makro-commerce-concept.webp" alt="Concept grocery commerce mobile interface" loading="lazy" decoding="async" width="1400" height="788" className="aspect-video h-full w-full object-cover" />
+              <img src={withBase("/projects/makro-commerce-concept.webp")} alt="Concept grocery commerce mobile interface" loading="lazy" decoding="async" width="1400" height="788" className="aspect-video h-full w-full object-cover" />
             </figure>
             <figure className="overflow-hidden">
-              <img src="/projects/makro-systems-concept.webp" alt="Concept architecture for a multi-market grocery commerce platform" loading="lazy" decoding="async" width="1400" height="788" className="aspect-video h-full w-full object-cover" />
+              <img src={withBase("/projects/makro-systems-concept.webp")} alt="Concept architecture for a multi-market grocery commerce platform" loading="lazy" decoding="async" width="1400" height="788" className="aspect-video h-full w-full object-cover" />
             </figure>
           </div>
           <div className="grid gap-8 p-8 sm:p-10 lg:grid-cols-[0.9fr_1.1fr] lg:p-12">
@@ -121,7 +122,7 @@ export default function WorkPage({ onNavigate }: WorkPageProps) {
             <p className="mt-2 text-gray-400">Share the outcome, current state and constraints with our senior team.</p>
           </div>
           <a
-            href="/contact"
+            href={withBase("/contact")}
             onClick={(event) => {
               event.preventDefault();
               onNavigate("home");

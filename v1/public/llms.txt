@@ -8,23 +8,23 @@ The company works across more than 45 South Asian languages. Public examples inc
 
 ## Primary pages
 
-- Home: https://mirasai.co/
-- Services: https://mirasai.co/services
-- Work: https://mirasai.co/work
-- About: https://mirasai.co/about
-- Careers: https://mirasai.co/careers
-- Contact: https://mirasai.co/contact
-- Privacy Policy: https://mirasai.co/privacy-policy
-- Cookie Policy: https://mirasai.co/cookie-policy
-- Terms of Service: https://mirasai.co/terms-of-service
+- Home: https://mirasai.co/v1/
+- Services: https://mirasai.co/v1/services
+- Work: https://mirasai.co/v1/work
+- About: https://mirasai.co/v1/about
+- Careers: https://mirasai.co/v1/careers
+- Contact: https://mirasai.co/v1/contact
+- Privacy Policy: https://mirasai.co/v1/privacy-policy
+- Cookie Policy: https://mirasai.co/v1/cookie-policy
+- Terms of Service: https://mirasai.co/v1/terms-of-service
 
 ## Service pages
 
-- Product and platform engineering: https://mirasai.co/services/product-platform-engineering
-- Mobile engineering: https://mirasai.co/services/mobile-systems
-- Applied AI and automation: https://mirasai.co/services/applied-ai-automation
-- Voice and language data: https://mirasai.co/services/voice-language-data
-- Engineering leadership: https://mirasai.co/services/technical-leadership
+- Product and platform engineering: https://mirasai.co/v1/services/product-platform-engineering
+- Mobile engineering: https://mirasai.co/v1/services/mobile-systems
+- Applied AI and automation: https://mirasai.co/v1/services/applied-ai-automation
+- Voice and language data: https://mirasai.co/v1/services/voice-language-data
+- Engineering leadership: https://mirasai.co/v1/services/technical-leadership
 
 ## Verified company facts
 

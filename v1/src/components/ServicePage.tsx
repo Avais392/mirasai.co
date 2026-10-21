@@ -1,6 +1,7 @@
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import type { Page } from "@/App";
 import { SERVICE_BY_PAGE, type ServicePageId } from "@/content/services";
+import { withBase } from "@/base";
 
 interface ServicePageProps {
   servicePage: ServicePageId;
@@ -22,7 +23,7 @@ export default function ServicePage({ servicePage, onNavigate }: ServicePageProp
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <a
-          href="/services"
+          href={withBase("/services")}
           onClick={(event) => {
             event.preventDefault();
             onNavigate("home");
@@ -110,7 +111,7 @@ export default function ServicePage({ servicePage, onNavigate }: ServicePageProp
             </p>
           </div>
           <a
-            href="/contact"
+            href={withBase("/contact")}
             onClick={(event) => { event.preventDefault(); openContact(); }}
             className="inline-flex shrink-0 items-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-semibold text-black transition-colors hover:bg-gray-200"
           >

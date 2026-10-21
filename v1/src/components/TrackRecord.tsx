@@ -1,8 +1,10 @@
+import { withBase } from "@/base";
+
 const PROJECTS = [
   {
     name: "AimFit",
     domain: "Health and fitness",
-    image: "/projects/aimfit-overview.jpg",
+    image: withBase("/projects/aimfit-overview.jpg"),
     imageWidth: 832,
     imageHeight: 464,
     imageAlt: "AimFit mobile workout interface and training categories",
@@ -12,7 +14,7 @@ const PROJECTS = [
   {
     name: "Your Doctors Online",
     domain: "Telemedicine",
-    image: "/projects/ydo-overview.jpg",
+    image: withBase("/projects/ydo-overview.jpg"),
     imageWidth: 1024,
     imageHeight: 576,
     imageAlt: "Your Doctors Online mobile consultation interface",
@@ -22,7 +24,7 @@ const PROJECTS = [
   {
     name: "CP AXTRA / Makro PRO",
     domain: "Enterprise commerce",
-    image: "/projects/makro-commerce-concept.webp",
+    image: withBase("/projects/makro-commerce-concept.webp"),
     imageWidth: 1400,
     imageHeight: 788,
     imageAlt: "Concept presentation of a multi-market grocery commerce mobile platform",
@@ -100,7 +102,7 @@ export default function TrackRecord({ onOpenWork }: TrackRecordProps) {
 
         <div className="mt-8 flex justify-end">
           <a
-            href="/work"
+            href={withBase("/work")}
             onClick={(event) => { event.preventDefault(); onOpenWork(); }}
             className="rounded-lg border border-cyan-300/20 bg-cyan-300/[0.05] px-5 py-2.5 text-sm font-medium text-cyan-100 transition-colors hover:border-cyan-300/40 hover:bg-cyan-300/[0.09]"
           >

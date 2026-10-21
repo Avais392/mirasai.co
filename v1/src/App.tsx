@@ -20,6 +20,7 @@ import CareersPage from "@/components/CareersPage";
 import CareerRolePage from "@/components/CareerRolePage";
 import FAQ from "@/components/FAQ";
 import { SERVICES, type ServicePageId } from "@/content/services";
+import { BASE, withBase } from "@/base";
 
 export type Page =
   | "home"
@@ -75,7 +76,8 @@ const PAGE_TITLES: Record<Page, string> = {
   ...SERVICE_TITLES,
 };
 
-const pageFromPath = (path: string): Page => {
+const pageFromPath = (fullPath: string): Page => {
+  const path = fullPath.startsWith(BASE) ? fullPath.slice(BASE.length) || "/" : fullPath;
   const normalizedPath = path.length > 1 ? path.replace(/\/+$/, "") : path;
   const entry = Object.entries(PAGE_PATHS).find(([, value]) => value === normalizedPath);
   return (entry?.[0] as Page | undefined) ?? "home";
@@ -125,7 +127,7 @@ export default function App({ initialPath, initialTheme }: AppProps = {}) {
     window.scrollTo({ top: 0, behavior: "instant" });
     document.title = PAGE_TITLES[page];
     const description = PAGE_DESCRIPTIONS[page] ?? DEFAULT_DESCRIPTION;
-    const canonicalUrl = `https://mirasai.co${PAGE_PATHS[page]}`;
+    const canonicalUrl = `https://mirasai.co${withBase(PAGE_PATHS[page])}`;
     const setMeta = (selector: string, attribute: string, value: string) => {
       const element = document.head.querySelector<HTMLMetaElement>(selector);
       element?.setAttribute(attribute, value);
@@ -147,7 +149,7 @@ export default function App({ initialPath, initialTheme }: AppProps = {}) {
   }, []);
 
   const handleNavigate = (target: Page) => {
-    const path = PAGE_PATHS[target];
+    const path = withBase(PAGE_PATHS[target]);
     if (window.location.pathname !== path) {
       window.history.pushState({}, "", path);
     }

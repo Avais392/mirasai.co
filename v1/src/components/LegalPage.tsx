@@ -1,4 +1,5 @@
 import { ArrowLeft } from "lucide-react";
+import { withBase } from "@/base";
 
 interface LegalPageProps {
   title: string;
@@ -47,7 +48,7 @@ export default function LegalPage({ title, summary, onBack, children }: LegalPag
           <p className="font-mono text-xs uppercase tracking-[0.14em] text-gray-500">Related documents</p>
           <div className="mt-4 flex flex-wrap gap-3">
             {POLICY_LINKS.filter(([label]) => label !== title).map(([label, href]) => (
-              <a key={href} href={href} className="secondary-cta rounded-lg border px-4 py-2 text-sm font-medium transition-colors">{label}</a>
+              <a key={href} href={withBase(href)} className="secondary-cta rounded-lg border px-4 py-2 text-sm font-medium transition-colors">{label}</a>
             ))}
           </div>
         </nav>

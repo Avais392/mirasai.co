@@ -1,6 +1,7 @@
 import { ArrowRight, Linkedin } from "lucide-react";
 import type { Page } from "@/App";
 import LanguageConstellation from "@/components/LanguageConstellation";
+import { withBase } from "@/base";
 
 interface AboutPageProps {
   onNavigate: (page: Page) => void;
@@ -122,7 +123,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                 AXTRA / Makro PRO, AimFit and Your Doctors Online.
               </p>
               <a
-                href="/work"
+                href={withBase("/work")}
                 onClick={(event) => { event.preventDefault(); onNavigate("work"); }}
                 className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-violet-200 hover:text-white"
               >

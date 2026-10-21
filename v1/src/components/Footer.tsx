@@ -1,5 +1,6 @@
 import { Linkedin, Mail } from "lucide-react";
 import type { Page } from "@/App";
+import { withBase } from "@/base";
 
 interface FooterProps {
   onNavigate: (page: Page) => void;
@@ -21,13 +22,13 @@ export default function Footer({ onNavigate }: FooterProps) {
           {/* Brand */}
           <div className="md:col-span-2">
             <a
-              href="/"
+              href={withBase("/")}
               onClick={(event) => { event.preventDefault(); onNavigate("home"); }}
               className="brand-mark py-1"
               aria-label="Miras AI home"
             >
               <img
-                src="/miras-gold-wordmark.webp"
+                src={withBase("/miras-gold-wordmark.webp")}
                 alt="Miras AI"
                 width="900"
                 height="310"
@@ -50,42 +51,42 @@ export default function Footer({ onNavigate }: FooterProps) {
             <h3 className="text-sm font-semibold text-white mb-4">Company</h3>
             <ul className="space-y-3">
               <li>
-                <a href="/services" onClick={(event) => { event.preventDefault(); onNavigate("services"); }}
+                <a href={withBase("/services")} onClick={(event) => { event.preventDefault(); onNavigate("services"); }}
                   className="text-sm text-gray-400 hover:text-white transition-colors"
                 >
                   Services
                 </a>
               </li>
               <li>
-                <a href="/work" onClick={(event) => { event.preventDefault(); onNavigate("work"); }}
+                <a href={withBase("/work")} onClick={(event) => { event.preventDefault(); onNavigate("work"); }}
                   className="text-sm text-gray-400 hover:text-white transition-colors"
                 >
                   Work
                 </a>
               </li>
               <li>
-                <a href="/about" onClick={(event) => { event.preventDefault(); onNavigate("about"); }}
+                <a href={withBase("/about")} onClick={(event) => { event.preventDefault(); onNavigate("about"); }}
                   className="text-sm text-gray-400 hover:text-white transition-colors"
                 >
                   About
                 </a>
               </li>
               <li>
-                <a href="/#approach" onClick={(event) => { event.preventDefault(); scrollToSection("approach"); }}
+                <a href={withBase("/#approach")} onClick={(event) => { event.preventDefault(); scrollToSection("approach"); }}
                   className="text-sm text-gray-400 hover:text-white transition-colors"
                 >
                   Approach
                 </a>
               </li>
               <li>
-                <a href="/careers" onClick={(event) => { event.preventDefault(); onNavigate("careers"); }}
+                <a href={withBase("/careers")} onClick={(event) => { event.preventDefault(); onNavigate("careers"); }}
                   className="text-sm text-gray-400 hover:text-white transition-colors"
                 >
                   Careers
                 </a>
               </li>
               <li>
-                <a href="/contact" onClick={(event) => { event.preventDefault(); onNavigate("contact"); }}
+                <a href={withBase("/contact")} onClick={(event) => { event.preventDefault(); onNavigate("contact"); }}
                   className="text-sm text-gray-400 hover:text-white transition-colors"
                 >
                   Contact
@@ -129,7 +130,7 @@ export default function Footer({ onNavigate }: FooterProps) {
           </p>
           <div className="flex items-center gap-6">
             <a
-              href="/cookie-policy"
+              href={withBase("/cookie-policy")}
               onClick={(event) => {
                 event.preventDefault();
                 onNavigate("cookie");
@@ -139,7 +140,7 @@ export default function Footer({ onNavigate }: FooterProps) {
               Cookie Policy
             </a>
             <a
-              href="/privacy-policy"
+              href={withBase("/privacy-policy")}
               onClick={(event) => {
                 event.preventDefault();
                 onNavigate("privacy");
@@ -149,7 +150,7 @@ export default function Footer({ onNavigate }: FooterProps) {
               Privacy Policy
             </a>
             <a
-              href="/terms-of-service"
+              href={withBase("/terms-of-service")}
               onClick={(event) => {
                 event.preventDefault();
                 onNavigate("terms");
