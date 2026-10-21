@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://mirasai.co/v1/sitemap.xml

@@ -2,7 +2,7 @@ import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { render } from "../dist-ssr/entry-server.js";
 
-const origin = "https://mirasai.co/v1";
+const origin = "https://mirasai.co";
 const organizationId = `${origin}/#organization`;
 
 const routes = [
