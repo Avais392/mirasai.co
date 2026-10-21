@@ -1,16 +1,8 @@
 # Releasing to Vercel
 
-This repository deploys to production only when a version tag such as `v1.0.0` is pushed. Commits, pull requests, and merges do not trigger this workflow. The tag must point to a commit on `main`.
+The `mirasai-tech` project publishes to production only when a version tag such as `v1.0.0` is pushed. Commits, pull requests, and merges do not trigger a deployment. The tagged commit must be on `main`.
 
-## One-time setup
-
-Use the existing Vercel project `mirasai-tech` without connecting its automatic Git deployment integration. Add these repository secrets under **Settings → Secrets and variables → Actions**:
-
-- `VERCEL_TOKEN`: a Vercel access token that can deploy to the project.
-- `VERCEL_ORG_ID`: the `orgId` for the Vercel account or team that owns the project.
-- `VERCEL_PROJECT_ID`: the project's `projectId`.
-
-You can obtain both IDs by running `vercel link` against `mirasai-tech` in a local checkout and reading the generated `.vercel/project.json`. Keep the token in GitHub Actions secrets; do not commit it or `.vercel/` to the repository.
+The Vercel Git connection is disconnected, and `vercel.json` disables automatic Git deployments if it is connected again. The GitHub Actions `production` environment allows only `v*` tags. `VERCEL_TOKEN` is stored as an encrypted secret in that environment; `VERCEL_ORG_ID` and `VERCEL_PROJECT_ID` are repository secrets. The project-scoped token expires on October 21, 2027 and must be rotated before then.
 
 ## Publish
 
