@@ -1,0 +1,16 @@
+{
+  "name": "Miras AI",
+  "short_name": "Miras AI",
+  "description": "Product engineering, applied AI, mobile systems and multilingual language-data services.",
+  "start_url": "/v1/",
+  "display": "standalone",
+  "background_color": "#080a12",
+  "theme_color": "#080a12",
+  "icons": [
+    {
+      "src": "/v1/miras-mark.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#080a12" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#faf7f0" media="(prefers-color-scheme: light)" />
+    <script>
+      try {
+        const savedTheme = localStorage.getItem("miras-theme");
+        document.documentElement.dataset.theme = savedTheme === "light" || savedTheme === "dark"
+          ? savedTheme
+          : (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      } catch (_) {
+        document.documentElement.dataset.theme = "dark";
+      }
+    </script>
+
+    <title>Miras AI | Product Engineering, Applied AI &amp; Language Data</title>
+    <meta name="title" content="Miras AI | Product Engineering, Applied AI &amp; Language Data" />
+    <meta name="description" content="Miras AI delivers senior product engineering, applied AI, mobile systems and multilingual language-data capability from teams in the United States and Pakistan." />
+    <meta name="author" content="Miras AI" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="canonical" href="https://mirasai.co/v1/" />
+    <link rel="icon" type="image/png" href="/miras-mark.png" />
+    <link rel="apple-touch-icon" href="/miras-mark.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mirasai.co/v1/" />
+    <meta property="og:site_name" content="Miras AI" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Miras AI | Product Engineering, Applied AI &amp; Language Data" />
+    <meta property="og:description" content="Senior product engineering, applied AI, mobile systems and multilingual language-data capability from teams in the United States and Pakistan." />
+    <meta property="og:image" content="https://mirasai.co/v1/og-cover.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Miras AI gold calligraphy mark on a deep navy background" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Miras AI | Product Engineering, Applied AI &amp; Language Data" />
+    <meta name="twitter:description" content="Senior product engineering, applied AI, mobile systems and multilingual language-data capability from teams in the United States and Pakistan." />
+    <meta name="twitter:image" content="https://mirasai.co/v1/og-cover.jpg" />
+    <meta name="twitter:image:alt" content="Miras AI gold calligraphy mark on a deep navy background" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": ["Organization", "ProfessionalService"],
+            "@id": "https://mirasai.co/v1/#organization",
+            "name": "Miras AI",
+            "url": "https://mirasai.co/v1/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://mirasai.co/v1/miras-gold-wordmark.webp",
+              "width": 900,
+              "height": 310
+            },
+            "image": "https://mirasai.co/v1/og-cover.jpg",
+            "description": "US-registered product engineering and AI company delivering mobile platforms, applied AI workflows and multilingual language-data programs from the United States and Pakistan.",
+            "foundingDate": "2026",
+            "email": "avais@mirasai.co",
+            "address": [
+              {
+                "@type": "PostalAddress",
+                "addressLocality": "Bloomington",
+                "addressRegion": "Indiana",
+                "addressCountry": "US"
+              },
+              {
+                "@type": "PostalAddress",
+                "addressLocality": "Lahore",
+                "addressRegion": "Punjab",
+                "addressCountry": "PK"
+              }
+            ],
+            "areaServed": [
+              { "@type": "Country", "name": "United States" },
+              { "@type": "Country", "name": "Pakistan" }
+            ],
+            "founder": [
+              {
+                "@type": "Person",
+                "name": "Avais Muhib Ur Rasool",
+                "jobTitle": "Co-Founder and CTO",
+                "sameAs": "https://www.linkedin.com/in/avais392/"
+              },
+              {
+                "@type": "Person",
+                "name": "Meesum Alam",
+                "jobTitle": "Co-Founder",
+                "sameAs": "https://www.linkedin.com/in/meesum-alam/"
+              }
+            ],
+            "sameAs": ["https://www.linkedin.com/company/mirasai/"],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "email": "avais@mirasai.co",
+              "contactType": "sales",
+              "availableLanguage": ["English", "Urdu"]
+            },
+            "knowsAbout": [
+              "Product engineering",
+              "React Native mobile development",
+              "Applied artificial intelligence",
+              "Retrieval-augmented generation",
+              "Speech data",
+              "Natural language processing",
+              "South Asian languages",
+              "Technical leadership"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://mirasai.co/v1/#website",
+            "url": "https://mirasai.co/v1/",
+            "name": "Miras AI",
+            "publisher": { "@id": "https://mirasai.co/v1/#organization" },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "OfferCatalog",
+            "name": "Miras AI engineering services",
+            "provider": { "@id": "https://mirasai.co/v1/#organization" },
+            "itemListElement": [
+              { "@type": "Offer", "url": "https://mirasai.co/v1/services/product-platform-engineering", "itemOffered": { "@type": "Service", "name": "Product and platform engineering", "description": "Product discovery, architecture, web and mobile engineering, integrations, QA and release." } },
+              { "@type": "Offer", "url": "https://mirasai.co/v1/services/mobile-systems", "itemOffered": { "@type": "Service", "name": "Mobile engineering", "description": "React Native architecture, native integrations, payments, real-time features and release operations." } },
+              { "@type": "Offer", "url": "https://mirasai.co/v1/services/applied-ai-automation", "itemOffered": { "@type": "Service", "name": "Applied AI and automation", "description": "Production AI workflows with retrieval, evaluation, permissions, human review and observability." } },
+              { "@type": "Offer", "url": "https://mirasai.co/v1/services/voice-language-data", "itemOffered": { "@type": "Service", "name": "Voice and language data", "description": "South Asian speech and language-data programs spanning collection, transcription, annotation and quality assurance." } },
+              { "@type": "Offer", "url": "https://mirasai.co/v1/services/technical-leadership", "itemOffered": { "@type": "Service", "name": "Engineering leadership", "description": "Architecture, roadmap, technical due diligence and fractional CTO support." } }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
