@@ -14,8 +14,9 @@ The site includes route-specific metadata, full static HTML for every public rou
    - `/work`
    - `/about`
    - `/careers`
-   - `/careers/ai-engineer-intern`
-   - `/careers/sales-intern`
+   - `/careers/full-stack-engineering-intern`
+   - `/careers/business-development-sales-intern`
+   - `/careers/social-media-visual-content-intern`
    - `/contact`
    - `/privacy-policy`
    - `/robots.txt`

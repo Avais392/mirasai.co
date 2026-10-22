@@ -10,7 +10,7 @@ export default function CareerRolePage({ roleId }: CareerRolePageProps) {
   const role = ROLES.find((item) => item.id === roleId);
   if (!role) return null;
 
-  const applicationLink = `mailto:recruitment@mirasai.co?subject=${encodeURIComponent(`${role.title} application`)}&body=${encodeURIComponent("Please attach your CV and include links to relevant work, projects or profiles.")}`;
+  const applicationLink = `mailto:recruitment@mirasai.co?subject=${encodeURIComponent(role.applySubject)}&body=${encodeURIComponent("Please attach your CV and include links to relevant work, projects or profiles.")}`;
 
   return (
     <main className="relative overflow-hidden pb-24 pt-28 sm:pb-32 sm:pt-36">

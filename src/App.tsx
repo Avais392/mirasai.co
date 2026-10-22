@@ -29,8 +29,9 @@ export type Page =
   | "services"
   | "contact"
   | "careers"
-  | "career-ai-engineer-intern"
-  | "career-sales-intern"
+  | "career-full-stack-engineering-intern"
+  | "career-business-development-sales-intern"
+  | "career-social-media-visual-content-intern"
   | "cookie"
   | "privacy"
   | "terms"
@@ -53,8 +54,9 @@ const PAGE_PATHS: Record<Page, string> = {
   services: "/services",
   contact: "/contact",
   careers: "/careers",
-  "career-ai-engineer-intern": "/careers/ai-engineer-intern",
-  "career-sales-intern": "/careers/sales-intern",
+  "career-full-stack-engineering-intern": "/careers/full-stack-engineering-intern",
+  "career-business-development-sales-intern": "/careers/business-development-sales-intern",
+  "career-social-media-visual-content-intern": "/careers/social-media-visual-content-intern",
   cookie: "/cookie-policy",
   privacy: "/privacy-policy",
   terms: "/terms-of-service",
@@ -68,8 +70,9 @@ const PAGE_TITLES: Record<Page, string> = {
   services: "Product Engineering & AI Services | Miras AI",
   contact: "Contact Miras AI | Discuss an Engineering or AI Project",
   careers: "Careers at Miras AI | Open Roles in Lahore",
-  "career-ai-engineer-intern": "AI Engineer Intern in Lahore | Miras AI Careers",
-  "career-sales-intern": "Sales Intern in Lahore | Miras AI Careers",
+  "career-full-stack-engineering-intern": "Full-Stack Engineering Intern in Lahore | Miras AI Careers",
+  "career-business-development-sales-intern": "BD & Sales Intern in Lahore | Miras AI Careers",
+  "career-social-media-visual-content-intern": "Social Media Intern in Lahore | Miras AI Careers",
   cookie: "Cookie Policy | Miras AI",
   privacy: "Privacy Policy | Miras AI",
   terms: "Terms of Service | Miras AI",
@@ -93,8 +96,9 @@ const PAGE_DESCRIPTIONS: Partial<Record<Page, string>> = {
   services: "Explore Miras AI services in product engineering, React Native mobile systems, applied AI, voice and language data, and fractional technical leadership.",
   contact: "Discuss a product, AI, mobile or multilingual systems mandate with Miras AI. We aim to respond within one business day.",
   careers: "Explore open roles at Miras AI in Lahore, Pakistan, across engineering, AI, language data and growth.",
-  "career-ai-engineer-intern": "Apply for the AI Engineer Intern role at Miras AI in Lahore and work on applied AI, retrieval, automation and multilingual technology.",
-  "career-sales-intern": "Apply for the Sales Intern role at Miras AI in Lahore and support research-led business development for engineering and AI services.",
+  "career-full-stack-engineering-intern": "Apply for the Full-Stack Engineering Intern (AI/ML focus) role at Miras AI in Lahore: build frontend, backend and practical AI features end to end.",
+  "career-business-development-sales-intern": "Apply for the Business Development & Sales Intern role at Miras AI in Lahore: company research, tailored outreach, lead qualification and follow-ups.",
+  "career-social-media-visual-content-intern": "Apply for the Social Media & Visual Content Intern role at Miras AI in Lahore: plan content, design posts and carousels, and keep the brand consistent.",
   cookie: "Learn which browser storage the Miras AI website uses, what it does and how to control it.",
   privacy: "Learn how Miras AI handles enquiries, job applications, technical access data, international transfers and privacy requests.",
   terms: "Read the terms that govern access to the Miras AI website, including permitted use, intellectual property, disclaimers and Indiana law.",
@@ -182,8 +186,9 @@ export default function App({ initialPath, initialTheme }: AppProps = {}) {
       {page === "services" && <ServicesPage onNavigate={handleNavigate} />}
       {page === "contact" && <ContactPage />}
       {page === "careers" && <CareersPage />}
-      {page === "career-ai-engineer-intern" && <CareerRolePage roleId="ai-engineer-intern" />}
-      {page === "career-sales-intern" && <CareerRolePage roleId="sales-intern" />}
+      {page === "career-full-stack-engineering-intern" && <CareerRolePage roleId="full-stack-engineering-intern" />}
+      {page === "career-business-development-sales-intern" && <CareerRolePage roleId="business-development-sales-intern" />}
+      {page === "career-social-media-visual-content-intern" && <CareerRolePage roleId="social-media-visual-content-intern" />}
       {page.startsWith("service-") && (
         <ServicePage servicePage={page as ServicePageId} onNavigate={handleNavigate} />
       )}

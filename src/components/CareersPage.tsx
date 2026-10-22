@@ -56,7 +56,7 @@ export default function CareersPage() {
                     View role
                   </a>
                   <a
-                    href={`mailto:recruitment@mirasai.co?subject=${encodeURIComponent(`${role.title} application`)}&body=${encodeURIComponent("Please attach your CV and include links to relevant work, projects or profiles.")}`}
+                    href={`mailto:recruitment@mirasai.co?subject=${encodeURIComponent(role.applySubject)}&body=${encodeURIComponent("Please attach your CV and include links to relevant work, projects or profiles.")}`}
                     className="primary-cta inline-flex shrink-0 items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold"
                   >
                     Apply by email <ArrowRight className="h-4 w-4" />

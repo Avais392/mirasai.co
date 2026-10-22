@@ -11,7 +11,8 @@ async function findHtml(directory) {
   const files = [];
   for (const entry of entries) {
     const path = join(directory, entry.name);
-    if (entry.isDirectory()) files.push(...await findHtml(path));
+    // dist/v1 is the archived previous site, outside this site's SEO rules.
+    if (entry.isDirectory()) { if (path !== join(root, "v1")) files.push(...await findHtml(path)); }
     else if (entry.name === "index.html") files.push(path);
   }
   return files;
