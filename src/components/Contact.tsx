@@ -7,9 +7,10 @@ const fieldClass =
 
 interface ContactProps {
   pageHeading?: boolean;
+  compact?: boolean;
 }
 
-export default function Contact({ pageHeading = false }: ContactProps) {
+export default function Contact({ pageHeading = false, compact = false }: ContactProps) {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
@@ -34,6 +35,28 @@ export default function Contact({ pageHeading = false }: ContactProps) {
 
     window.location.href = `mailto:avais@mirasai.co?subject=${subject}&body=${body}`;
   };
+
+  if (compact) {
+    return (
+      <section id="contact" className="relative py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="surface-card border-glow grid gap-7 rounded-3xl p-7 sm:p-10 lg:grid-cols-[1fr_auto] lg:items-center lg:p-12">
+            <div className="max-w-3xl">
+              <p className="font-mono text-sm text-cyan-300">/ discuss a project</p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Tell us what is blocking progress</h2>
+              <p className="mt-4 text-base leading-relaxed text-gray-400 sm:text-lg">
+                Share the product, workflow or technical challenge. We will respond with a useful next step: a discovery call, a scoped technical review or an honest assessment of fit.
+              </p>
+            </div>
+            <a href={withBase("/contact")} className="primary-cta group inline-flex w-fit items-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold">
+              Start a conversation
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </a>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="contact" className="relative py-24 sm:py-32">

@@ -190,6 +190,15 @@
     background: #0d1217;
   }
 
+  .case-study-image {
+    transform: scale(1.12);
+    transform-origin: center bottom;
+  }
+
+  .group:hover .case-study-image {
+    transform: scale(1.14);
+  }
+
   .theme-info-panel {
     background: #0a0d17;
   }

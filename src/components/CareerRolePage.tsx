@@ -51,12 +51,12 @@ export default function CareerRolePage({ roleId }: CareerRolePageProps) {
           <section className="mt-12 rounded-2xl border border-white/[0.08] bg-white/[0.025] p-6 sm:p-8">
             <h2 className="text-xl font-semibold text-white">How to apply</h2>
             <p className="mt-3 max-w-3xl leading-relaxed text-gray-400">
-              Email your CV and links to relevant work to recruitment@mirasai.co. Engineering candidates should include a repository, project demonstration or final-year project where possible. Include the role title in the subject line.
+              Email your CV and links to relevant work to recruitment@mirasai.co. {role.applicationNote} Include the role title in the subject line.
             </p>
             <a href={applicationLink} className="primary-cta mt-6 inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold">
-              Apply by email <ArrowRight className="h-4 w-4" />
+              Apply <ArrowRight className="h-4 w-4" />
             </a>
-            <p className="mt-4 text-sm text-gray-500">If the button does not open, email recruitment@mirasai.co directly.</p>
+            <p className="mt-4 text-sm text-gray-500">If the Apply button does not open, email recruitment@mirasai.co directly.</p>
           </section>
         </article>
       </div>

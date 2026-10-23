@@ -6,6 +6,7 @@ export const ROLES = [
     location: "Hybrid · Lahore, Pakistan",
     summary: "Build practical features you can explain end to end, across frontend and UI, APIs and backend, data and AI services, and testing.",
     applySubject: "Full-Stack Intern – [Your Name]",
+    applicationNote: "Include a repository, project demonstration or final-year project where possible.",
     responsibilities: [
       "Build frontend and backend features",
       "Work with APIs and databases",
@@ -27,6 +28,7 @@ export const ROLES = [
     location: "Hybrid · Lahore, Pakistan",
     summary: "Turn thoughtful research into useful conversations through company research, outreach writing, lead qualification and follow-ups.",
     applySubject: "BD & Sales Intern – [Your Name]",
+    applicationNote: "Relevant writing, research or campaign samples are welcome but not required.",
     responsibilities: [
       "Research relevant companies and prospects",
       "Draft tailored LinkedIn and email outreach",
@@ -48,6 +50,7 @@ export const ROLES = [
     location: "Hybrid · Lahore, Pakistan",
     summary: "Design clear, on-brand content that communicates ideas well, from content planning and post design to captions and brand consistency.",
     applySubject: "Social Media Intern – [Your Name]",
+    applicationNote: "Include a portfolio or links to personal, university or freelance design work.",
     responsibilities: [
       "Plan relevant content ideas",
       "Design social posts and carousels",

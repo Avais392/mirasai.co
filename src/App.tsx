@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
+import DeliveryNeeds from "@/components/DeliveryNeeds";
 import TrackRecord from "@/components/TrackRecord";
 import HowWeWork from "@/components/HowWeWork";
 import Contact from "@/components/Contact";
@@ -11,8 +12,6 @@ import PrivacyPolicy from "@/components/legal/PrivacyPolicy";
 import TermsOfService from "@/components/legal/TermsOfService";
 import AboutPage from "@/components/AboutPage";
 import WorkPage from "@/components/WorkPage";
-import WhyMiras from "@/components/WhyMiras";
-import EngagementModels from "@/components/EngagementModels";
 import ServicePage from "@/components/ServicePage";
 import ServicesPage from "@/components/ServicesPage";
 import ContactPage from "@/components/ContactPage";
@@ -171,13 +170,12 @@ export default function App({ initialPath, initialTheme }: AppProps = {}) {
       {page === "home" && (
         <main>
           <Hero />
+          <DeliveryNeeds />
           <Services onOpenService={handleNavigate} />
-          <WhyMiras />
           <TrackRecord onOpenWork={() => handleNavigate("work")} />
-          <EngagementModels />
           <HowWeWork />
           <FAQ />
-          <Contact />
+          <Contact compact />
         </main>
       )}
 

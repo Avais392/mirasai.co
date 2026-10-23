@@ -1,73 +1,63 @@
 import { ArrowRight } from "lucide-react";
 import LanguageConstellation from "@/components/LanguageConstellation";
 
+const CAPABILITIES = [
+  "Product engineering",
+  "Mobile and web",
+  "Applied AI",
+  "Automation",
+  "Engineering leadership",
+];
+
 export default function Hero() {
   const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section className="relative overflow-hidden pt-32 pb-24 sm:pt-40 sm:pb-32">
-      {/* Background layers */}
+    <section className="relative overflow-hidden pb-20 pt-32 sm:pb-24 sm:pt-40">
       <div className="absolute inset-0 bg-grid opacity-40" />
       <div className="absolute inset-0 bg-radial-glow" />
       <LanguageConstellation />
-      <div
-        className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 rounded-full blur-3xl animate-pulse-glow"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(124,109,247,0.15) 0%, transparent 70%)",
-        }}
-      />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-5xl text-center">
-          {/* Headline */}
+          <p className="animate-fade-up font-mono text-sm text-cyan-300">
+            Product engineering and AI systems
+          </p>
           <h1
-            className="headline-safe animate-fade-up text-4xl sm:text-5xl lg:text-[4rem] font-semibold tracking-tight text-gradient"
-            style={{ animationDelay: "0.1s" }}
+            className="headline-safe animate-fade-up mt-5 text-4xl font-semibold tracking-tight text-gradient sm:text-6xl lg:text-7xl"
+            style={{ animationDelay: "0.08s" }}
           >
-            Senior engineering for products that cannot afford to fail.
+            Build the product. Solve the hard parts. Own the outcome.
           </h1>
-
           <p
-            className="animate-fade-up mt-6 text-xl sm:text-2xl font-medium text-gray-200 leading-relaxed max-w-3xl mx-auto"
-            style={{ animationDelay: "0.2s" }}
+            className="animate-fade-up mx-auto mt-6 max-w-3xl text-base leading-relaxed text-gray-300 sm:text-lg"
+            style={{ animationDelay: "0.16s" }}
           >
-            Mobile platforms, applied AI and multilingual systems—led from scope through production.
+            Miras AI partners with founders and technology teams to design, build and improve software that has to work in the real world. From cross-platform products and complex integrations to AI workflows and technical leadership, we bring a clear plan and accountable delivery.
           </p>
 
-          {/* Supporting copy */}
-          <p
-            className="animate-fade-up mt-5 text-base sm:text-lg text-gray-400 leading-relaxed max-w-3xl mx-auto"
-            style={{ animationDelay: "0.25s" }}
-          >
-            Miras AI helps founders, CTOs and product leaders launch new
-            platforms, modernize complex systems and recover delivery at risk.
-            We assemble a senior team around the mandate and remain accountable
-            through release.
-          </p>
-
-          {/* CTAs */}
           <div
-            className="animate-fade-up mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
-            style={{ animationDelay: "0.3s" }}
+            className="animate-fade-up mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row"
+            style={{ animationDelay: "0.24s" }}
           >
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="primary-cta group flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-300"
-            >
+            <button onClick={() => scrollToSection("contact")} className="primary-cta group flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold">
               Discuss a project
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </button>
-            <button
-              onClick={() => scrollToSection("work")}
-              className="secondary-cta flex items-center gap-2 rounded-lg border px-6 py-3 text-sm font-medium transition-all duration-300"
-            >
+            <button onClick={() => scrollToSection("work")} className="secondary-cta rounded-lg border px-6 py-3 text-sm font-medium">
               Explore our work
             </button>
           </div>
+
+          <ul className="animate-fade-up mt-10 flex flex-wrap justify-center gap-2" style={{ animationDelay: "0.32s" }} aria-label="Core capabilities">
+            {CAPABILITIES.map((item) => (
+              <li key={item} className="rounded-full border border-white/[0.09] bg-white/[0.035] px-4 py-2 text-xs text-gray-400">
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

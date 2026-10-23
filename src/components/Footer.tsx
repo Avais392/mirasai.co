@@ -1,164 +1,61 @@
 import { Linkedin, Mail } from "lucide-react";
 import type { Page } from "@/App";
+import { SERVICES } from "@/content/services";
 import { withBase } from "@/base";
 
-interface FooterProps {
-  onNavigate: (page: Page) => void;
-}
+interface FooterProps { onNavigate: (page: Page) => void; }
 
 export default function Footer({ onNavigate }: FooterProps) {
-  const scrollToSection = (id: string) => {
+  const scrollToApproach = () => {
     onNavigate("home");
-    setTimeout(() => {
-      const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    }, 100);
+    setTimeout(() => document.getElementById("approach")?.scrollIntoView({ behavior: "smooth" }), 100);
   };
 
   return (
-    <footer className="relative border-t border-white/[0.06] py-16">
+    <footer className="relative border-t border-white/[0.06] py-14">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-4">
-          {/* Brand */}
-          <div className="md:col-span-2">
-            <a
-              href={withBase("/")}
-              onClick={(event) => { event.preventDefault(); onNavigate("home"); }}
-              className="brand-mark py-1"
-              aria-label="Miras AI home"
-            >
-              <img
-                src={withBase("/miras-gold-wordmark.webp")}
-                alt="Miras AI"
-                width="900"
-                height="310"
-                loading="lazy"
-                decoding="async"
-                className="h-11 w-auto object-contain"
-              />
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.35fr_1fr_0.8fr_0.8fr]">
+          <div>
+            <a href={withBase("/")} onClick={(event) => { event.preventDefault(); onNavigate("home"); }} className="brand-mark py-1" aria-label="Miras AI home">
+              <img src={withBase("/miras-gold-wordmark.webp")} alt="Miras AI" width="900" height="310" loading="lazy" decoding="async" className="h-11 w-auto object-contain" />
             </a>
-            <p className="mt-4 text-sm text-gray-400 max-w-sm leading-relaxed">
-              Senior product engineering, applied AI and language-data capability
-              for organizations with consequential delivery mandates.
-            </p>
-            <p className="mt-3 font-mono text-xs text-gray-500">
-              Headquartered in Bloomington, Indiana · Delivery operations in Lahore, Pakistan
-            </p>
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-gray-400">Product engineering and AI systems partner for founders, CTOs and agencies. We bring a clear plan and accountable delivery.</p>
+            <p className="mt-3 font-mono text-xs text-gray-500">Bloomington, Indiana · Lahore, Pakistan</p>
           </div>
 
-          {/* Navigation */}
           <div>
-            <h3 className="text-sm font-semibold text-white mb-4">Company</h3>
+            <h2 className="mb-4 text-sm font-semibold text-white">Services</h2>
             <ul className="space-y-3">
-              <li>
-                <a href={withBase("/services")} onClick={(event) => { event.preventDefault(); onNavigate("services"); }}
-                  className="text-sm text-gray-400 hover:text-white transition-colors"
-                >
-                  Services
-                </a>
-              </li>
-              <li>
-                <a href={withBase("/work")} onClick={(event) => { event.preventDefault(); onNavigate("work"); }}
-                  className="text-sm text-gray-400 hover:text-white transition-colors"
-                >
-                  Work
-                </a>
-              </li>
-              <li>
-                <a href={withBase("/about")} onClick={(event) => { event.preventDefault(); onNavigate("about"); }}
-                  className="text-sm text-gray-400 hover:text-white transition-colors"
-                >
-                  About
-                </a>
-              </li>
-              <li>
-                <a href={withBase("/#approach")} onClick={(event) => { event.preventDefault(); scrollToSection("approach"); }}
-                  className="text-sm text-gray-400 hover:text-white transition-colors"
-                >
-                  Approach
-                </a>
-              </li>
-              <li>
-                <a href={withBase("/careers")} onClick={(event) => { event.preventDefault(); onNavigate("careers"); }}
-                  className="text-sm text-gray-400 hover:text-white transition-colors"
-                >
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a href={withBase("/contact")} onClick={(event) => { event.preventDefault(); onNavigate("contact"); }}
-                  className="text-sm text-gray-400 hover:text-white transition-colors"
-                >
-                  Contact
-                </a>
-              </li>
+              {SERVICES.map((service) => <li key={service.page}><a href={withBase(service.path)} onClick={(event) => { event.preventDefault(); onNavigate(service.page); }} className="text-sm text-gray-400 transition-colors hover:text-white">{service.title}</a></li>)}
             </ul>
           </div>
 
-          {/* Connect */}
           <div>
-            <h3 className="text-sm font-semibold text-white mb-4">Connect</h3>
+            <h2 className="mb-4 text-sm font-semibold text-white">Company</h2>
             <ul className="space-y-3">
-              <li>
-                <a
-                  href="https://www.linkedin.com/company/mirasai/about/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
-                >
-                  <Linkedin className="h-4 w-4" />
-                  LinkedIn
-                </a>
-              </li>
-              <li>
-                <a
-                  href="mailto:avais@mirasai.co"
-                  className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
-                >
-                  <Mail className="h-4 w-4" />
-                  avais@mirasai.co
-                </a>
-              </li>
+              <li><a href={withBase("/work")} onClick={(event) => { event.preventDefault(); onNavigate("work"); }} className="text-sm text-gray-400 hover:text-white">Work</a></li>
+              <li><a href={withBase("/#approach")} onClick={(event) => { event.preventDefault(); scrollToApproach(); }} className="text-sm text-gray-400 hover:text-white">Approach</a></li>
+              <li><a href={withBase("/about")} onClick={(event) => { event.preventDefault(); onNavigate("about"); }} className="text-sm text-gray-400 hover:text-white">About</a></li>
+              <li><a href={withBase("/careers")} onClick={(event) => { event.preventDefault(); onNavigate("careers"); }} className="text-sm text-gray-400 hover:text-white">Careers</a></li>
+              <li><a href={withBase("/contact")} onClick={(event) => { event.preventDefault(); onNavigate("contact"); }} className="text-sm text-gray-400 hover:text-white">Contact</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="mb-4 text-sm font-semibold text-white">Connect</h2>
+            <ul className="space-y-3">
+              <li><a href="https://www.linkedin.com/company/mirasai/about/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-gray-400 hover:text-white"><Linkedin className="h-4 w-4" />LinkedIn</a></li>
+              <li><a href="mailto:avais@mirasai.co" className="flex items-center gap-2 text-sm text-gray-400 hover:text-white"><Mail className="h-4 w-4" />avais@mirasai.co</a></li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-12 pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-gray-500">
-            &copy; {new Date().getFullYear()} Miras AI. All rights reserved.
-          </p>
-          <div className="flex items-center gap-6">
-            <a
-              href={withBase("/cookie-policy")}
-              onClick={(event) => {
-                event.preventDefault();
-                onNavigate("cookie");
-              }}
-              className="text-xs text-gray-500 hover:text-white transition-colors"
-            >
-              Cookie Policy
-            </a>
-            <a
-              href={withBase("/privacy-policy")}
-              onClick={(event) => {
-                event.preventDefault();
-                onNavigate("privacy");
-              }}
-              className="text-xs text-gray-500 hover:text-white transition-colors"
-            >
-              Privacy Policy
-            </a>
-            <a
-              href={withBase("/terms-of-service")}
-              onClick={(event) => {
-                event.preventDefault();
-                onNavigate("terms");
-              }}
-              className="text-xs text-gray-500 hover:text-white transition-colors"
-            >
-              Terms of Service
-            </a>
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/[0.06] pt-8 sm:flex-row">
+          <p className="text-xs text-gray-500">&copy; {new Date().getFullYear()} Miras AI. All rights reserved.</p>
+          <div className="flex flex-wrap items-center justify-center gap-6">
+            <a href={withBase("/cookie-policy")} onClick={(event) => { event.preventDefault(); onNavigate("cookie"); }} className="text-xs text-gray-500 hover:text-white">Cookie Policy</a>
+            <a href={withBase("/privacy-policy")} onClick={(event) => { event.preventDefault(); onNavigate("privacy"); }} className="text-xs text-gray-500 hover:text-white">Privacy Policy</a>
+            <a href={withBase("/terms-of-service")} onClick={(event) => { event.preventDefault(); onNavigate("terms"); }} className="text-xs text-gray-500 hover:text-white">Terms of Service</a>
           </div>
         </div>
       </div>

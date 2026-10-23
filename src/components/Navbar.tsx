@@ -11,10 +11,7 @@ interface NavbarProps {
 
 const NAV_LINKS = [
   { label: "Services", page: "services" as Page, path: "/services" },
-  { label: "Work", page: "work" as Page, path: "/work" },
-  { label: "Approach", section: "approach" },
   { label: "About", page: "about" as Page, path: "/about" },
-  { label: "Careers", page: "careers" as Page, path: "/careers" },
   { label: "Contact", page: "contact" as Page, path: "/contact" },
 ];
 
@@ -28,24 +25,9 @@ export default function Navbar({ onNavigate, currentPage, onToggleTheme }: Navba
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleSectionNav = (target: string) => {
-    if (currentPage !== "home") {
-      onNavigate("home");
-      setTimeout(() => scrollToSection(target), 100);
-    } else {
-      scrollToSection(target);
-    }
-    setMenuOpen(false);
-  };
-
   const handlePageNav = (target: Page) => {
     onNavigate(target);
     setMenuOpen(false);
-  };
-
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -78,11 +60,10 @@ export default function Navbar({ onNavigate, currentPage, onToggleTheme }: Navba
             {NAV_LINKS.map((link) => (
               <a
                 key={link.label}
-                href={withBase(link.path ?? "/#approach")}
+                href={withBase(link.path)}
                 onClick={(event) => {
                   event.preventDefault();
-                  if (link.page) handlePageNav(link.page);
-                  else handleSectionNav(link.section!);
+                  handlePageNav(link.page);
                 }}
                 className="text-sm text-gray-400 hover:text-white transition-colors duration-200"
                 aria-current={link.page === currentPage ? "page" : undefined}
@@ -134,11 +115,10 @@ export default function Navbar({ onNavigate, currentPage, onToggleTheme }: Navba
             {NAV_LINKS.map((link) => (
               <a
                 key={link.label}
-                href={withBase(link.path ?? "/#approach")}
+                href={withBase(link.path)}
                 onClick={(event) => {
                   event.preventDefault();
-                  if (link.page) handlePageNav(link.page);
-                  else handleSectionNav(link.section!);
+                  handlePageNav(link.page);
                 }}
                 className="block w-full text-left text-base text-gray-300 hover:text-white py-2"
                 aria-current={link.page === currentPage ? "page" : undefined}
