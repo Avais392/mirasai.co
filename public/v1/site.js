@@ -4,7 +4,7 @@
   var nav = document.createElement("nav");
   nav.className = "miras-nav-mobile";
   nav.setAttribute("aria-label", "Mobile navigation");
-  nav.innerHTML = '<a href="/services">Services</a><a href="/work">Work</a><a href="/approach">Approach</a><a href="/careers">Careers</a><a href="/contact">Contact</a><a href="/about">About</a><a href="/contact">Discuss a project</a>';
+  nav.innerHTML = '<a href="/services">Services</a><a href="/work">Work</a><a href="/approach">Approach</a><a href="/contact">Contact</a><a href="/about">About</a><a href="/contact">Discuss a project</a>';
   header?.appendChild(nav);
   toggle?.setAttribute("aria-expanded", "false");
   toggle?.addEventListener("click", function () {
