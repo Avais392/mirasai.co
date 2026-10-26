@@ -11,9 +11,11 @@ The company works across more than 45 South Asian languages. Public examples inc
 - Home: https://mirasai.co/
 - Services: https://mirasai.co/services
 - Work: https://mirasai.co/work
+- Approach: https://mirasai.co/approach
 - About: https://mirasai.co/about
 - Careers: https://mirasai.co/careers
 - Contact: https://mirasai.co/contact
+- Engineering insights: https://mirasai.co/insights
 - Privacy Policy: https://mirasai.co/privacy-policy
 - Cookie Policy: https://mirasai.co/cookie-policy
 - Terms of Service: https://mirasai.co/terms-of-service
@@ -26,13 +28,21 @@ The company works across more than 45 South Asian languages. Public examples inc
 - Voice and language data: https://mirasai.co/services/voice-language-data
 - Engineering leadership: https://mirasai.co/services/technical-leadership
 
+## Expert guides
+
+- React Native stabilization: https://mirasai.co/insights/react-native-stabilization
+- Evaluating AI workflows: https://mirasai.co/insights/evaluating-ai-workflows
+- Architecture assessments: https://mirasai.co/insights/architecture-assessment
+- Multilingual transcription quality: https://mirasai.co/insights/multilingual-transcription-quality
+- Fractional CTO guidance: https://mirasai.co/insights/fractional-cto
+
 ## Verified company facts
 
 - Headquarters: Bloomington, Indiana, United States
 - Delivery office: Lahore, Punjab, Pakistan
 - Founded: 2026
 - Public LinkedIn page: https://www.linkedin.com/company/mirasai/
-- Contact: avais@mirasai.co
+- Contact: hello@mirasai.co
 - Recruitment: recruitment@mirasai.co
 
 ## Engagement facts

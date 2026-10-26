@@ -11,8 +11,8 @@ async function findHtml(directory) {
   const files = [];
   for (const entry of entries) {
     const path = join(directory, entry.name);
-    // dist/v1 is the archived previous site, outside this site's SEO rules.
-    if (entry.isDirectory()) { if (path !== join(root, "v1")) files.push(...await findHtml(path)); }
+    // Archived versions remain accessible but are deliberately outside the canonical site's SEO rules.
+    if (entry.isDirectory()) { if (![join(root, "v1"), join(root, "v2")].includes(path)) files.push(...await findHtml(path)); }
     else if (entry.name === "index.html") files.push(path);
   }
   return files;
@@ -28,10 +28,10 @@ for (const file of files) {
   const rel = relative(root, file).split(sep).join("/");
   const route = rel === "index.html" ? "/" : `/${rel.replace(/\/index\.html$/, "")}`;
   const title = first(html, /<title>(.*?)<\/title>/s);
-  const description = first(html, /<meta name="description" content="(.*?)" \/>/s);
-  const canonical = first(html, /<link rel="canonical" href="(.*?)" \/>/s);
+  const description = first(html, /<meta name="description" content="(.*?)"\s*\/?\s*>/s);
+  const canonical = first(html, /<link rel="canonical" href="(.*?)"\s*\/?\s*>/s);
   const h1Count = (html.match(/<h1(?:\s|>)/g) ?? []).length;
-  const hasStaticBody = html.includes('<div id="root" data-prerendered="true"><div');
+  const hasStaticBody = /<main(?:\s|>)/.test(html);
   const schemas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
 
   if (!title) errors.push(`${route}: missing title`);

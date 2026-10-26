@@ -1,6 +1,10 @@
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
-import { render } from "../dist-ssr/entry-server.js";
+const outputDir = process.env.OUTPUT_DIR || "dist";
+const ssrDir = process.env.SSR_DIR || "dist-ssr";
+const urlPrefix = (process.env.URL_PREFIX || "").replace(/\/$/, "");
+const robots = process.env.ROBOTS || "index";
+const { render } = await import(`../${ssrDir}/entry-server.js`);
 
 const origin = "https://mirasai.co";
 const organizationId = `${origin}/#organization`;
@@ -25,7 +29,7 @@ const routes = [
   { path: "/terms-of-service", title: "Terms of Service | Miras AI", description: "Read the terms that govern access to the Miras AI website, including permitted use, intellectual property, disclaimers and Indiana law.", label: "Terms of Service" },
 ];
 
-const template = await readFile("dist/index.html", "utf8");
+const template = await readFile(join(outputDir, "index.html"), "utf8");
 
 function escapeHtml(value) {
   return value.replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
@@ -79,10 +83,10 @@ function routeSchema(route) {
 }
 
 function routeHtml(route) {
-  const canonical = `${origin}${route.path}`;
+  const canonical = `${origin}${urlPrefix}${route.path === "/" ? "/" : route.path}`;
   const safeTitle = escapeHtml(route.title);
   const safeDescription = escapeHtml(route.description);
-  const body = render(route.path);
+  const body = render(`${urlPrefix}${route.path}`);
   return template
     .replace(/<title>.*?<\/title>/, `<title>${safeTitle}</title>`)
     .replace(/(<meta name="title" content=").*?(" \/>)/, `$1${safeTitle}$2`)
@@ -93,15 +97,17 @@ function routeHtml(route) {
     .replace(/(<meta name="twitter:title" content=").*?(" \/>)/, `$1${safeTitle}$2`)
     .replace(/(<meta name="twitter:description" content=").*?(" \/>)/, `$1${safeDescription}$2`)
     .replace(/(<link rel="canonical" href=").*?(" \/>)/, `$1${canonical}$2`)
+    .replace(/(<meta name="robots" content=").*?(" \/>)/, `$1${robots === "noindex" ? "noindex, follow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"}$2`)
+    .replace(/(<meta name="googlebot" content=").*?(" \/>)/, `$1${robots === "noindex" ? "noindex, follow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"}$2`)
     .replace("</head>", `    <script type="application/ld+json">${routeSchema(route)}</script>\n  </head>`)
     .replace('<div id="root"></div>', `<div id="root" data-prerendered="true">${body}</div>`);
 }
 
 for (const route of routes) {
-  const output = route.path === "/" ? "dist/index.html" : join("dist", route.path.slice(1), "index.html");
+  const output = route.path === "/" ? join(outputDir, "index.html") : join(outputDir, route.path.slice(1), "index.html");
   await mkdir(dirname(output), { recursive: true });
   await writeFile(output, routeHtml(route));
 }
 
-await rm("dist-ssr", { recursive: true, force: true });
+await rm(ssrDir, { recursive: true, force: true });
 console.log(`Statically rendered ${routes.length} route entry points.`);

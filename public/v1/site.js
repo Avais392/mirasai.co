@@ -1,27 +1,26 @@
-// Optional: configure a real Formspree-compatible HTTPS form endpoint. Keep blank until configured.
-window.MIRAS_CONTACT_FORM_ENDPOINT = '';
-
 (function(){
  var header=document.querySelector('header');
- function updateHeader(){ if(!header)return;var solid=window.scrollY>28 || !document.body.classList.contains('page-home');
-  header.classList.toggle('bg-transparent',!solid);header.classList.toggle('bg-background/95',solid);header.classList.toggle('backdrop-blur-sm',solid);header.classList.toggle('border-b',solid);header.classList.toggle('border-border',solid);}
- updateHeader();window.addEventListener('scroll',updateHeader,{passive:true});
  var toggle=header?.querySelector('button[aria-label="Toggle menu"]');
  var nav=document.createElement('nav');nav.className='miras-nav-mobile';nav.setAttribute('aria-label','Mobile navigation');
- nav.innerHTML='<a href="/v1/services">Services</a><a href="/v1/work">Work</a><a href="/v1/approach">Approach</a><a href="/v1/about">About</a><a href="/v1/contact">Contact</a><a href="/v1/contact">Discuss a project</a>';
+ nav.innerHTML='<a href="/v1/services">Services</a><a href="/v1/work">Work</a><a href="/v1/approach">Approach</a><a href="/v1/careers">Careers</a><a href="/v1/contact">Contact</a><a href="/v1/about">About</a><a href="/v1/contact">Discuss a project</a>';
  header?.appendChild(nav);toggle?.setAttribute('aria-expanded','false');
  toggle?.addEventListener('click',function(){var open=nav.classList.toggle('is-open');toggle.setAttribute('aria-expanded',String(open))});
  nav.addEventListener('click',function(e){if(e.target.closest('a'))nav.classList.remove('is-open')});
  var form=document.querySelector('[data-contact-form]');
  if(form){
   var feedback=document.createElement('p');feedback.id='form-feedback';feedback.hidden=true;feedback.setAttribute('role','status');form.insertAdjacentElement('afterend',feedback);
-  form.addEventListener('submit',async function(event){event.preventDefault();var endpoint=window.MIRAS_CONTACT_FORM_ENDPOINT || '';
-   if(!endpoint){feedback.hidden=false;feedback.textContent='This recovered form is not connected yet. Set MIRAS_CONTACT_FORM_ENDPOINT in site.js before accepting messages.';return;}
-   var button=form.querySelector('[type="submit"]');button.disabled=true;button.textContent='Sending…';
-   try{var res=await fetch(endpoint,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});
-    if(!res.ok)throw new Error('Failed');feedback.hidden=false;feedback.textContent='Thanks — your message has been sent.';form.reset();
-   }catch(e){feedback.hidden=false;feedback.textContent='Sorry, the message could not be sent. Please try again.';}
-   finally{button.disabled=false;button.textContent='Send message';}
+  form.addEventListener('submit',function(event){event.preventDefault();
+   var data=new FormData(form);
+   if(data.get('_gotcha'))return;
+   var name=String(data.get('name')||'').trim();
+   var email=String(data.get('email')||'').trim();
+   var company=String(data.get('company')||'').trim()||'Not provided';
+   var service=String(data.get('serviceType')||'').trim()||'Not selected';
+   var message=String(data.get('message')||'').trim();
+   var subject='Project enquiry from '+name;
+   var body=['Name: '+name,'Email: '+email,'Company or team: '+company,'Area of interest: '+service,'','Project or technical challenge:',''+message].join('\n');
+   feedback.hidden=false;feedback.textContent='Your email application is opening. If it does not open, email hello@mirasai.co directly.';
+   window.location.href='mailto:hello@mirasai.co?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
   });
  }
  var banner=document.querySelector('.miras-cookie-banner');
