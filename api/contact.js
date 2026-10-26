@@ -37,7 +37,14 @@ export default async function handler(request, response) {
   try {
     const relay = await fetch(FORMSUBMIT_ENDPOINT, {
       method: "POST",
-      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Origin": "https://mirasai.co",
+        "Referer": "https://mirasai.co/contact",
+        "X-Requested-With": "XMLHttpRequest",
+        "User-Agent": "Miras-AI-Contact-Form/1.0",
+      },
       body: JSON.stringify({
         name,
         email,
@@ -52,6 +59,13 @@ export default async function handler(request, response) {
     });
 
     if (!relay.ok) throw new Error(`Form relay returned ${relay.status}`);
+    const relayResult = await relay.json();
+    if (String(relayResult.success) !== "true") {
+      return response.status(503).json({
+        ok: false,
+        message: `The contact form is awaiting email activation. Please email ${DESTINATION} directly for now.`,
+      });
+    }
     return response.status(200).json({ ok: true, message: "Thank you. Your message has been sent to Miras AI." });
   } catch (error) {
     console.error("Contact form delivery failed", error);
