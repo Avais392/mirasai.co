@@ -59,6 +59,15 @@ const jobs = {
   },
 };
 
+const homepageFaq = `<section class="miras-faq" id="faq"><div class="miras-faq-shell"><p class="miras-eyebrow">Frequently asked</p><h2>Practical answers before we speak</h2><div class="miras-faq-list">
+  <details><summary>What does Miras AI build?</summary><div><p>Miras AI designs and delivers web and mobile products, React Native systems, applied AI workflows, multilingual speech and language-data programs, and fractional technical leadership.</p></div></details>
+  <details><summary>Where is Miras AI based?</summary><div><p>Miras AI is registered and headquartered in Bloomington, Indiana, with delivery operations in Lahore, Pakistan. The team supports work across US and Asian time zones.</p></div></details>
+  <details><summary>Which South Asian languages does Miras AI support?</summary><div><p>The team works across more than 45 South Asian languages, including Urdu, Punjabi, Sindhi, Pashto, Saraiki and Balochi, with capability spanning collection, transcription, annotation and quality assurance.</p></div></details>
+  <details><summary>How can a company engage Miras AI?</summary><div><p>Engagements include defined projects, focused senior workstreams, delivery pods, embedded engineering teams, white-label delivery and fractional CTO support.</p></div></details>
+  <details><summary>How long does an engagement take?</summary><div><p>A technical assessment can take two to four weeks. Focused releases commonly run four to twelve weeks, while defined product builds typically run six to sixteen weeks. Scope and dependencies determine the final plan.</p></div></details>
+  <details><summary>How does a project start?</summary><div><p>Send the objective, current state and principal constraints. Miras AI aims to respond within one business day with a discovery call, scoped assessment or a clear view on fit.</p></div></details>
+</div></div></section>`;
+
 function esc(value) {
   return value.replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 }
@@ -110,6 +119,7 @@ function enhance(html, route) {
   html = html.replace(/<meta property="og:[^"]+"[^>]*>/gi, "").replace(/<meta name="twitter:[^"]+"[^>]*>/gi, "");
   html = html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/gi, "");
   html = html.replace(/\saria-label="View details for [^"]+"/g, "");
+  if (route.path === "/") html = html.replace('<section class="py-24 lg:py-32" id="start-project">', `${homepageFaq}<section class="py-24 lg:py-32" id="start-project">`);
   const title = titleContent(html);
   let description = metaContent(html, "description") || "Miras AI product engineering and AI systems services.";
   if (serviceDescriptions[route.path]) description = serviceDescriptions[route.path];
