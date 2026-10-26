@@ -114,7 +114,12 @@ function schemas(route, title, description) {
 }
 
 function enhance(html, route) {
-  html = html.replaceAll('/v1/privacy', '/privacy-policy').replaceAll('/v1/terms', '/terms-of-service').replaceAll('/v1', '');
+  html = html
+    .replaceAll('href="/v1"', 'href="/"')
+    .replaceAll("href='/v1'", "href='/'")
+    .replaceAll('/v1/privacy', '/privacy-policy')
+    .replaceAll('/v1/terms', '/terms-of-service')
+    .replaceAll('/v1', '');
   html = html.replace(/<meta name="robots"[^>]*>/gi, "").replace(/<meta name="googlebot"[^>]*>/gi, "");
   html = html.replace(/<link rel="canonical"[^>]*>/gi, "");
   html = html.replace(/<meta property="og:[^"]+"[^>]*>/gi, "").replace(/<meta name="twitter:[^"]+"[^>]*>/gi, "");
