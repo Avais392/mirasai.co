@@ -120,6 +120,20 @@ function enhance(html, route) {
     .replaceAll('/v1/privacy', '/privacy-policy')
     .replaceAll('/v1/terms', '/terms-of-service')
     .replaceAll('/v1', '');
+  html = html
+    .replaceAll(
+      "Our Co-Founder and CTO, Avais Muhib Ur Rasool, has worked on production products across enterprise commerce, health and fitness. This is his prior engineering track record; these products were not built by Miras AI.",
+      "Led by Co-Founder and CTO Avais Muhib Ur Rasool, our delivery approach is grounded in hands-on experience building and improving production software across enterprise commerce, health and fitness, and telemedicine. That experience shapes how we make architecture decisions, manage delivery risk and move complex work into production.",
+    )
+    .replaceAll(
+      "Avais brings production engineering experience across enterprise commerce, health and fitness, and telemedicine. Before co-founding Miras AI, he worked as a senior mobile engineer on products including CP AXTRA's React Native commerce ecosystem, the AimFit fitness platform, and Your Doctors Online's mobile and web workflows.",
+      "Avais brings hands-on experience building and improving production software across enterprise commerce, health and fitness, and telemedicine. His work spans CP AXTRA's multi-market React Native commerce ecosystem, AimFit's consumer fitness platform, and Your Doctors Online's mobile and web workflows.",
+    )
+    .replaceAll(
+      "The track record below reflects Avais's prior employment history. These products were not built by Miras AI.",
+      "That experience informs how Miras AI approaches architecture, delivery risk and production readiness.",
+    )
+    .replaceAll("Prior engineering track record", "Selected product experience");
   html = html.replace(/<meta name="robots"[^>]*>/gi, "").replace(/<meta name="googlebot"[^>]*>/gi, "");
   html = html.replace(/<link rel="canonical"[^>]*>/gi, "");
   html = html.replace(/<meta property="og:[^"]+"[^>]*>/gi, "").replace(/<meta name="twitter:[^"]+"[^>]*>/gi, "");
