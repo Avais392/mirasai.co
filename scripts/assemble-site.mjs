@@ -3,6 +3,7 @@ import { dirname, join, relative } from "node:path";
 
 const origin = "https://mirasai.co";
 const source = "public/v1";
+const archiveSource = "archive-sites/v1";
 const out = "dist";
 const archive = join(out, "v1");
 
@@ -142,7 +143,7 @@ async function files(dir) {
 await mkdir(out, { recursive: true });
 await cp(".build-v2", join(out, "v2"), { recursive: true });
 await rm(join(out, "v2", "v1"), { recursive: true, force: true });
-await cp(source, archive, { recursive: true });
+await cp(archiveSource, archive, { recursive: true });
 
 for (const file of await files(archive)) {
   if (!file.endsWith(".html")) continue;
