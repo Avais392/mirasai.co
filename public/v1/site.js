@@ -35,14 +35,14 @@
 
       try {
         var payload = Object.fromEntries(new FormData(form).entries());
-        var result = await fetch("/api/contact", {
+        var result = await fetch("https://formsubmit.co/ajax/hello@mirasai.co", {
           method: "POST",
           headers: { "Content-Type": "application/json", "Accept": "application/json" },
           body: JSON.stringify(payload),
         });
         var data = await result.json();
-        if (!result.ok) throw new Error(data.message || "Unable to send message.");
-        feedback.textContent = data.message;
+        if (!result.ok || String(data.success) !== "true") throw new Error(data.message || "Unable to send message.");
+        feedback.textContent = "Thank you. Your message has been sent to Miras AI.";
         form.reset();
       } catch (error) {
         feedback.textContent = error.message || "We could not send your message. Please email hello@mirasai.co directly.";
