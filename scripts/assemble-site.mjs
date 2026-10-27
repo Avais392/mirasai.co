@@ -148,6 +148,7 @@ function enhance(html, route) {
     )
     .replaceAll("Prior engineering track record", "Selected product experience");
   if (route.path === "/services") html = html.replace(/<main>[\s\S]*?<\/main>/, servicesOverviewPage);
+  html = html.replace("</footer>", '<div class="miras-footer-wordmark" aria-hidden="true">MIRAS AI</div></footer>');
   // Individual service pages stay published, but all on-site links point to the overview.
   html = html.replace(/href="\/services\/[a-z-]+"/g, 'href="/services"');
   html = html.replace(/<meta name="robots"[^>]*>/gi, "").replace(/<meta name="googlebot"[^>]*>/gi, "");
