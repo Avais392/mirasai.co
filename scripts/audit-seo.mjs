@@ -12,7 +12,7 @@ async function findHtml(directory) {
   for (const entry of entries) {
     const path = join(directory, entry.name);
     // Archived versions remain accessible but are deliberately outside the canonical site's SEO rules.
-    if (entry.isDirectory()) { if (![join(root, "v1"), join(root, "v2")].includes(path)) files.push(...await findHtml(path)); }
+    if (entry.isDirectory()) { if (![join(root, "v1"), join(root, "v2"), join(root, "v3")].includes(path)) files.push(...await findHtml(path)); }
     else if (entry.name === "index.html") files.push(path);
   }
   return files;

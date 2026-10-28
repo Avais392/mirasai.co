@@ -35,6 +35,10 @@
       "source": "/v2/:path*",
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex, follow" }]
     },
+    {
+      "source": "/v3/:path*",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, follow, noarchive" }]
+    },
     { "source": "/assets/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
     { "source": "/projects/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000" }] },
     { "source": "/miras-gold-wordmark.webp", "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000" }] },
