@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "rm -rf dist .build-v2 .build-ssr && vite build --base=/v2/ --outDir .build-v2 && vite build --ssr src/entry-server.tsx --base=/v2/ --outDir .build-ssr && OUTPUT_DIR=.build-v2 SSR_DIR=.build-ssr URL_PREFIX=/v2 ROBOTS=noindex node scripts/prerender.mjs && node scripts/assemble-site.mjs",
+    "build": "rm -rf dist .build-v2 .build-ssr && vite build --base=/v2/ --outDir .build-v2 && vite build --ssr src/entry-server.tsx --base=/v2/ --outDir .build-ssr && OUTPUT_DIR=.build-v2 SSR_DIR=.build-ssr URL_PREFIX=/v2 ROBOTS=noindex node scripts/prerender.mjs && node scripts/assemble-site.mjs && node scripts/assemble-v3.mjs",
     "lint": "eslint .",
     "audit:seo": "node scripts/audit-seo.mjs",
     "preview": "vite preview",
