@@ -12,6 +12,8 @@ const sources = {
   retailoverse: "https://retailo.co/retailoverse",
   retailoMedia: "https://retailo.co/media",
   kaawu: "https://www.instagram.com/kaaw.u/",
+  meta: "https://ai.meta.com/blog/omnilingual-asr-advancing-automatic-speech-recognition/",
+  datasets: "https://mozilladatacollective.com/organization/cmnenb62r00ptnl07tyo36fft",
 };
 
 const apps = {
@@ -26,9 +28,13 @@ const apps = {
 };
 
 // RetailO has no iOS link: its App Store listing (id1607963433) returns 404 in every storefront.
-const storeLinks = (app) => `${ext(app.play, "Android")}${app.ios ? ext(app.ios, "iPhone") : "<!-- TODO: add RetailO iPhone link if the app returns to the App Store -->"}`;
+const storeLinks = (app) => `${ext(app.play, "Android")}${app.ios ? ext(app.ios, "iPhone") : ""}`;
 
 export const liveApps = `${Object.values(apps).map((app) => `<article class="miras-app-card"><p>${app.region}</p><h3>${app.name}</h3><p>${app.desc}</p><div class="miras-app-links">${storeLinks(app)}</div></article>`).join("")}<article class="miras-app-card"><p>Instagram, AI content operations</p><h3>KAAWU</h3><p>Character-led Urdu wit and poetry reels</p><div class="miras-app-links">${ext(sources.kaawu, "Instagram")}</div></article>`;
+
+const picture = (img) => `<picture><source srcset="${img.webp}" type="image/webp"><img src="${img.src}" alt="${img.alt}" loading="lazy" decoding="async" width="${img.width}" height="${img.height}"></picture>`;
+const igLink = (inner, cls) => `<a class="${cls}" href="${sources.kaawu}" target="_blank" rel="noopener noreferrer">${inner}</a>`;
+const follow = igLink('Follow KAAWU on Instagram <span aria-hidden="true">↗</span>', "miras-case-follow");
 
 const list = (items) => `<ul class="miras-case-list">${items.map((item) => `<li>${item}</li>`).join("")}</ul>`;
 
@@ -39,12 +45,38 @@ const concept = { caption: "Concept visual", images: [
 
 export const caseStudies = [
   {
+    slug: "language-data", name: "South Asian speech and language data", sector: "Voice and language data",
+    summary: "Speech and text data for languages that modern AI has left behind, from Meta's Omnilingual ASR to open datasets anyone can use.",
+    chips: ["ASR data", "TTS datasets", "Speech translation", "Text corpora", "Annotation", "QA", "Low-resource languages"],
+    linksLabel: "Links",
+    links: `${ext(sources.time, "TIME")}${ext(sources.meta, "Meta announcement")}${ext(sources.datasets, "Our datasets on Mozilla Data Collective")}`,
+    heroAside: '<div class="miras-case-hero-stat"><strong>39</strong><span>Pakistani languages contributed to Omnilingual ASR</span></div>',
+    overview: "<p>Hundreds of millions of people speak Saraiki, Sindhi, Pashto, Balochi, Burushaski and other South Asian languages that have little or no representation in the data that trains speech recognition, translation and language models. We build that data: we source it with speaker communities, universities and local partners, then annotate, validate and publish it.</p><!-- TODO: add total hours of speech and number of speakers once confirmed by the team -->",
+    challenge: "Low-resource languages have few speakers online, little written material and no ready-made datasets. Data has to be collected in the field, transcribed by native speakers and checked carefully, or the resulting models simply don't work.",
+    extra: [["Meta Omnilingual ASR", `<p>Meta's FAIR team released Omnilingual ASR in November 2025: open-source speech recognition for 1,600+ languages, around 500 of them never transcribed by AI before, with character error rates below 10 for 78% of languages. TIME named it one of the Best Inventions of 2026. We contributed speech data for 39 Pakistani languages to it.</p><p class="miras-work-links">${ext(sources.time, "TIME")}${ext(sources.meta, "Meta announcement")}</p>`]],
+    modules: [
+      ["Speech recognition data", "Transcribed, time-aligned speech for ASR training and evaluation."],
+      ["Text-to-speech datasets", "Single-speaker recordings with aligned text, including 10-hour Punjabi and Saraiki TTS datasets."],
+      ["Speech translation", "The Burushaski to English Speech Translation Corpus."],
+      ["Large text corpora", "Multilingual news corpora in Urdu, Pashto, Sindhi, Balochi and Saraiki, plus literature corpora for languages such as Balti, Dameli, Palula, Gawar-Bati, Ormuri and Wakhi."],
+      ["Benchmarks", "Translation of Meta's BOUQuET benchmark into seven Pakistani languages."],
+      ["Publishing", "Datasets released on Mozilla Data Collective with clear licences and datasheets."],
+    ],
+    highlightsTitle: "How we keep the data trustworthy",
+    highlights: `<ol class="miras-case-steps">${[
+      "Consent, fair compensation and community involvement in every collection.",
+      "Native-speaker transcription and annotation, followed by validation passes.",
+      "Peer-reviewed research alongside the data, at venues such as LREC, MWE-UD and SIGUL.",
+      "Documented, properly licensed releases so others can actually use the data.",
+    ].map((item) => `<li>${item}</li>`).join("")}</ol>`,
+  },
+  {
     slug: "makro-pro", name: "Makro PRO", sector: "Enterprise commerce",
     summary: "Multi-market React Native and Next.js commerce from one modular codebase.",
     chips: ["React Native", "Next.js", "TypeScript", "Feature flags", "Universal Links", "AppsFlyer", "Bitrise", "Fastlane", "GitLab CI", "CodePush"],
     live: [apps.makro, apps.psar, apps.makroMyanmar, apps.lotuss],
     media: concept,
-    overview: "<p>A mature enterprise commerce platform delivered from a shared modular codebase. Country modules and configuration are built independently, then composed into one application and controlled through feature flags, serving Thailand, Cambodia, Myanmar and Malaysia.</p><!-- TODO: confirm whether to add the Philippines as a fifth market -->",
+    overview: "<p>A mature enterprise commerce platform delivered from a shared modular codebase. Country modules and configuration are built independently, then composed into one application and controlled through feature flags, serving four live markets: Thailand (Makro PRO), Cambodia (PSAR PLUS), Myanmar (Makro PRO Myanmar) and Malaysia (Lotus's).</p>",
     challenge: "Ship market-specific features without fragmenting a shared codebase, and make web-delivered screens feel native inside the app.",
     modules: [
       ["Country composition", "Market features and config packaged separately and assembled on a shared foundation."],
@@ -136,7 +168,7 @@ export const caseStudies = [
     summary: "Marketplace ordering and local payments for retailers.",
     chips: ["React Native", "Marketplace", "JazzCash", "EasyPaisa", "BNPL", "Dynamic links"],
     live: [apps.retailo],
-    overview: "<p>A B2B commerce platform retailers use for digital inventory ordering and restocking. We built buyer and seller journeys and payment flows designed around local banking and wallet behaviour.</p><!-- TODO: add RetailO images, challenge and engineering highlights once confirmed by the team -->",
+    overview: "<p>A B2B commerce platform retailers use for digital inventory ordering and restocking. We built buyer and seller journeys and payment flows designed around local banking and wallet behaviour.</p>",
     modules: [
       ["Marketplace", "Discovery, buyer and seller flows, cart and ordering."],
       ["Local payments", "JazzCash and EasyPaisa."],
@@ -155,9 +187,9 @@ export const caseStudies = [
     slug: "kaawu", name: "KAAWU", sector: "AI content operations",
     summary: "A low-cost AI media pipeline that produces character-led reels with human approval.",
     chips: ["AI image and video generation", "Prompt generation", "Browser automation", "Job queue", "Retries", "Upscaling", "Instagram publishing"],
-    links: ext(sources.kaawu, "Instagram"),
-    mediaTodo: "<!-- TODO: add /v3/projects/kaawu-grid.jpg (Instagram grid screenshot) and kaawu-reel.jpg -->",
-    overview: "<p>KAAWU is a character brand (“Tiny crow. Big maslay.”) publishing Urdu wit and poetry reels.</p><p>It runs on a persistent production queue instead of one-off manual generation. It uses existing subscription allowances and limited generation tokens efficiently, keeping running costs low while keeping retry, review and publishing controls.</p>",
+    follow,
+    heroAside: igLink(picture({ src: "/projects/kaawu-grid.png", webp: "/projects/kaawu-grid.webp", alt: "KAAWU Instagram profile showing a grid of character-led Urdu reels", width: 959, height: 1212 }), "miras-case-hero-image"),
+    overview: `<div class="miras-case-split"><div><p>KAAWU is a character brand (“Tiny crow. Big maslay.”) publishing Urdu wit and poetry reels from Pakistan, with every post produced by this pipeline.</p><p>KAAWU runs on a persistent production queue instead of one-off manual generation. It uses existing subscription allowances and limited generation tokens efficiently, keeping running costs low while keeping retry, review and publishing controls.</p>${follow}</div>${igLink(picture({ src: "/projects/kaawu-reel.png", webp: "/projects/kaawu-reel.webp", alt: "A single KAAWU reel featuring the crow character", width: 666, height: 1112 }), "miras-case-reel")}</div>`,
     challenge: "Produce a steady stream of on-brand, character-consistent short videos without a production team, and without low-quality output ever reaching the public.",
     modules: [
       ["Content queue", "Traceable jobs with status, inputs, outputs, failures and retry state."],
@@ -175,8 +207,8 @@ export const caseStudies = [
     slug: "wrap-and-co", name: "Wrap and Co invoice system", sector: "Workflow automation",
     summary: "A no-code invoicing workflow with reusable business rules and branded output.",
     chips: ["No-code", "Business rules", "Partial payments", "Shareable preview", "PDF"],
-    mediaTodo: "<!-- TODO: add invoice preview screenshot -->",
-    overview: "<p>Turns a recurring manual invoicing process into a reusable workflow. Operators build an invoice from saved services, apply pricing rules, add customer messaging and share a polished result without rebuilding the document each time.</p><p>It is a focused invoicing and customer document system, not accounting or ERP software.</p><!-- TODO: add Wrap and Co challenge and engineering highlights once confirmed by the team -->",
+    image: { src: "/projects/wrapco-invoice.jpg", webp: "/projects/wrapco-invoice.webp", alt: "Wrap and Co invoice builder with saved services and pricing rules beside the branded invoice preview", width: 1600, height: 890, caption: "Invoice builder and customer preview, shown with sample data." },
+    overview: "<p>Turns a recurring manual invoicing process into a reusable workflow. Operators build an invoice from saved services, apply pricing rules, add customer messaging and share a polished result without rebuilding the document each time.</p><p>It is a focused invoicing and customer document system, not accounting or ERP software.</p>",
     modules: [
       ["Invoice builder", "Build an invoice from saved services instead of rebuilding the document each time."],
       ["Reusable options", "Saved services, charges, greetings and event messages."],
@@ -191,7 +223,7 @@ export const caseStudies = [
 
 const moduleTable = (modules) => `<table class="miras-module-table"><thead><tr><th scope="col">Module</th><th scope="col">What it delivers</th></tr></thead><tbody>${modules.map(([name, delivers]) => delivers
   ? `<tr><th scope="row">${name}</th><td>${delivers}</td></tr>`
-  : `<tr><th scope="row" colspan="2">${name}<!-- TODO: add what this module delivers --></th></tr>`).join("")}</tbody></table>`;
+  : `<tr><th scope="row" colspan="2">${name}</th></tr>`).join("")}</tbody></table>`;
 
 export const statRow = (stats) => `<div class="miras-stat-row">${stats.map(([value, label, href]) => `<div><strong>${value}</strong><span>${label}</span>${ext(href, "source")}</div>`).join("")}</div><p class="miras-stat-note">Product scale figures from public sources.</p>`;
 
@@ -199,17 +231,18 @@ const media = ({ images, caption }) => `<div class="miras-work-media">${images.m
 
 export function caseStudyMain(study) {
   const next = caseStudies[(caseStudies.indexOf(study) + 1) % caseStudies.length];
-  const live = study.live ? study.live.map((app) => `<div><span>${app.name}</span>${storeLinks(app)}</div>`).join("") : `<div><span>Live</span>${study.links}</div>`;
+  const live = study.live ? study.live.map((app) => `<div><span>${app.name}</span>${storeLinks(app)}</div>`).join("") : `<div><span>${study.linksLabel || "Live"}</span>${study.links}</div>`;
   const sections = [
     ["Overview", study.overview],
     study.challenge && ["The challenge", `<p>${study.challenge}</p>`],
+    ...(study.extra || []),
     ["What we built", moduleTable(study.modules)],
-    study.highlights && ["Engineering highlights", study.highlights],
+    study.highlights && [study.highlightsTitle || "Engineering highlights", study.highlights],
     study.scale && ["Product scale", statRow(study.scale)],
   ].filter(Boolean);
   return `<main class="miras-work-page miras-case-page">
-  <section class="miras-work-intro miras-case-hero"><div class="miras-work-shell"><nav class="miras-breadcrumb" aria-label="Breadcrumb"><a href="/work">Work</a><span aria-hidden="true">/</span><span aria-current="page">${study.name}</span></nav><p class="miras-eyebrow">${study.sector}</p><h1>${study.name}</h1><p class="miras-case-summary">${study.summary}</p><div class="miras-work-tags">${study.chips.map((chip) => `<span>${chip}</span>`).join("")}</div>${study.live || study.links ? `<div class="miras-case-live">${live}</div>` : ""}</div></section>
-  ${study.media ? `<section class="miras-case-media"><div class="miras-work-shell">${media(study.media)}</div></section>` : study.mediaTodo}
+  <section class="miras-work-intro miras-case-hero"><div class="miras-work-shell${study.heroAside ? " miras-case-hero-split" : ""}"><div><nav class="miras-breadcrumb" aria-label="Breadcrumb"><a href="/work">Work</a><span aria-hidden="true">/</span><span aria-current="page">${study.name}</span></nav><p class="miras-eyebrow">${study.sector}</p><h1>${study.name}</h1><p class="miras-case-summary">${study.summary}</p><div class="miras-work-tags">${study.chips.map((chip) => `<span>${chip}</span>`).join("")}</div>${study.live || study.links ? `<div class="miras-case-live">${live}</div>` : ""}${study.follow || ""}</div>${study.heroAside || ""}</div></section>
+  ${study.media ? `<section class="miras-case-media"><div class="miras-work-shell">${media(study.media)}</div></section>` : ""}${study.image ? `<section class="miras-case-media"><div class="miras-work-shell"><figure class="miras-case-figure">${picture(study.image)}<figcaption class="miras-media-caption">${study.image.caption}</figcaption></figure></div></section>` : ""}
   ${sections.map(([title, body], i) => `<section class="miras-case-section"><div class="miras-work-shell"><div class="miras-case-grid"><div class="miras-case-section-head"><span>${num(i)}</span><h2>${title}</h2></div><div class="miras-case-section-body">${body}</div></div></div></section>`).join("\n  ")}
   <section class="miras-case-end"><div class="miras-work-shell"><section class="miras-work-cta"><div><h2>Have a comparable mandate?</h2><p>Share the outcome, current state and constraints with our senior team.</p></div><a href="/contact">Discuss a project →</a></section><a class="miras-case-next" href="/work/${next.slug}"><span>Next case study →</span><strong>${next.name}</strong></a></div></section>
 </main>`;
