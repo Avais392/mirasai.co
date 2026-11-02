@@ -2,8 +2,8 @@ import { cp, mkdir, readFile, readdir, rm, stat, writeFile } from "node:fs/promi
 import { dirname, join, relative } from "node:path";
 
 const origin = "https://mirasai.co";
-const source = "public/v1";
-const archiveSource = "archive-sites/v1";
+const source = "sites/main";
+const archiveSource = "sites/v1";
 const out = "dist";
 const archive = join(out, "v1");
 
