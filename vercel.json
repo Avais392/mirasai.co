@@ -6,7 +6,7 @@
   "outputDirectory": "dist",
   "trailingSlash": false,
   "git": {
-    "deploymentEnabled": false
+    "deploymentEnabled": true
   },
   "redirects": [
     { "source": "/privacy", "destination": "/privacy-policy", "permanent": true },
