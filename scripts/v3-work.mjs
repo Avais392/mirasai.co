@@ -17,21 +17,22 @@ const sources = {
   ai4pakistan: "https://ai4pakistan.com/",
 };
 
+// installs: the Google Play install band for each listing, checked 2 Nov 2026; Apple publishes no download counts
 const apps = {
-  makro: { name: "Makro PRO", region: "Thailand, grocery commerce", desc: "Digital grocery and wholesale platform", play: "https://play.google.com/store/apps/details?id=com.makromangoapp.production", ios: "https://apps.apple.com/us/app/makro-pro/id1570380497" },
-  psar: { name: "PSAR PLUS", region: "Cambodia, grocery commerce", desc: "Cambodia shopping experience", play: "https://play.google.com/store/apps/details?id=com.makro.makro", ios: "https://apps.apple.com/kh/app/psar-plus/id1447748977" },
-  makroMyanmar: { name: "Makro PRO Myanmar", region: "Myanmar, grocery commerce", desc: "Regional commerce experience for Myanmar", play: "https://play.google.com/store/apps/details?id=com.siammakro.myanmar", ios: "https://apps.apple.com/us/app/makro-pro-myanmar/id1502816249" },
-  lotuss: { name: "Lotus's App", region: "Malaysia, omnichannel retail", desc: "Shopping, rewards and delivery in one app", play: "https://play.google.com/store/apps/details?id=com.lotuss.oneapp.my", ios: "https://apps.apple.com/my/app/lotuss-app/id1551754541" },
-  ydo: { name: "Your Doctors Online", region: "Canada and US, telemedicine", desc: "On-demand virtual healthcare", play: "https://play.google.com/store/apps/details?id=com.ydo.smartapp", ios: "https://apps.apple.com/pk/app/yourdoctors-online-doctor/id1439216318" },
-  aimfit: { name: "AimFit Online", region: "Pakistan, women's fitness", desc: "At-home workouts and community fitness", play: "https://play.google.com/store/apps/details?id=com.goteamup.app.aimfitpk", ios: "https://apps.apple.com/pk/app/aimfit-online/id6743081729" },
-  retailo: { name: "RetailO", region: "MENAP, B2B commerce", desc: "Digital inventory and restocking for retailers", play: "https://play.google.com/store/apps/details?id=com.app.retailerapp" },
-  omyoga: { name: "OM Yoga Magazine", region: "UK, digital publishing", desc: "Digital issues and subscriptions", play: "https://play.google.com/store/apps/details?id=com.triactivemedia.omyoga", ios: "https://apps.apple.com/gb/app/om-yoga-magazine/id438185574" },
+  makro: { installs: "1M+", name: "Makro PRO", region: "Thailand, grocery commerce", desc: "Digital grocery and wholesale platform", play: "https://play.google.com/store/apps/details?id=com.makromangoapp.production", ios: "https://apps.apple.com/us/app/makro-pro/id1570380497" },
+  psar: { installs: "100K+", name: "PSAR PLUS", region: "Cambodia, grocery commerce", desc: "Cambodia shopping experience", play: "https://play.google.com/store/apps/details?id=com.makro.makro", ios: "https://apps.apple.com/kh/app/psar-plus/id1447748977" },
+  makroMyanmar: { installs: "100K+", name: "Makro PRO Myanmar", region: "Myanmar, grocery commerce", desc: "Regional commerce experience for Myanmar", play: "https://play.google.com/store/apps/details?id=com.siammakro.myanmar", ios: "https://apps.apple.com/us/app/makro-pro-myanmar/id1502816249" },
+  lotuss: { installs: "1M+", name: "Lotus's App", region: "Malaysia, omnichannel retail", desc: "Shopping, rewards and delivery in one app", play: "https://play.google.com/store/apps/details?id=com.lotuss.oneapp.my", ios: "https://apps.apple.com/my/app/lotuss-app/id1551754541" },
+  ydo: { installs: "100K+", name: "Your Doctors Online", region: "Canada and US, telemedicine", desc: "On-demand virtual healthcare", play: "https://play.google.com/store/apps/details?id=com.ydo.smartapp", ios: "https://apps.apple.com/pk/app/yourdoctors-online-doctor/id1439216318" },
+  aimfit: { installs: "1K+", name: "AimFit Online", region: "Pakistan, women's fitness", desc: "At-home workouts and community fitness", play: "https://play.google.com/store/apps/details?id=com.goteamup.app.aimfitpk", ios: "https://apps.apple.com/pk/app/aimfit-online/id6743081729" },
+  retailo: { installs: "100K+", name: "RetailO", region: "MENAP, B2B commerce", desc: "Digital inventory and restocking for retailers", play: "https://play.google.com/store/apps/details?id=com.app.retailerapp" },
+  omyoga: { installs: "1K+", name: "OM Yoga Magazine", region: "UK, digital publishing", desc: "Digital issues and subscriptions", play: "https://play.google.com/store/apps/details?id=com.triactivemedia.omyoga", ios: "https://apps.apple.com/gb/app/om-yoga-magazine/id438185574" },
 };
 
 // RetailO has no iOS link: its App Store listing (id1607963433) returns 404 in every storefront.
 const storeLinks = (app) => `${ext(app.play, "Android")}${app.ios ? ext(app.ios, "iPhone") : ""}`;
 
-export const liveApps = `${Object.values(apps).map((app) => `<article class="miras-app-card"><p>${app.region}</p><h3>${app.name}</h3><p>${app.desc}</p><div class="miras-app-links">${storeLinks(app)}</div></article>`).join("")}<article class="miras-app-card"><p>Instagram, AI content operations</p><h3>KAAWU</h3><p>Character-led Urdu wit and poetry reels</p><div class="miras-app-links">${ext(sources.kaawu, "Instagram")}</div></article>`;
+export const liveApps = `${Object.values(apps).map((app) => `<article class="miras-app-card"><p>${app.region}</p><h3>${app.name}</h3><p>${app.desc}</p><p class="miras-app-reach"><strong>${app.installs}</strong>downloads on Google Play</p><div class="miras-app-links">${storeLinks(app)}</div></article>`).join("")}<article class="miras-app-card"><p>Instagram, AI content operations</p><h3>KAAWU</h3><p>Character-led Urdu wit and poetry reels</p><p class="miras-app-reach"><strong>2.4K+</strong>followers on Instagram</p><div class="miras-app-links">${ext(sources.kaawu, "Instagram")}</div></article>`;
 
 const picture = (img) => `<picture><source srcset="${img.webp}" type="image/webp"><img src="${img.src}" alt="${img.alt}" loading="lazy" decoding="async" width="${img.width}" height="${img.height}"></picture>`;
 const igLink = (inner, cls) => `<a class="${cls}" href="${sources.kaawu}" target="_blank" rel="noopener noreferrer">${inner}</a>`;
