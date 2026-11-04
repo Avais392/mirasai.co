@@ -1,11 +1,11 @@
-// Builds the /v3 site from its own source in sites/v3. Runs after assemble-site.mjs; it never writes outside dist/v3.
+// Builds mirasai.co (dist/) and the /v3 preview (dist/v3) from the same source in sites/v3. Runs after assemble-site.mjs.
 import { cp, mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { caseStudies, caseStudyMain, liveApps } from "./v3-work.mjs";
 
 const origin = "https://mirasai.co";
 const source = "sites/v3";
-const preview = join("dist", "v3");
+const outputs = [{ dir: "dist", preview: false }, { dir: join("dist", "v3"), preview: true }];
 
 const routes = {
   "index.html": { path: "/", label: "Home" },
@@ -51,7 +51,7 @@ const jobs = {
   growth: {
     title: "Business Development & Sales Intern",
     team: "Growth",
-    description: "<p>Turn thoughtful research into useful conversations through company research, outreach writing, lead qualification and follow-ups.</p><h2>Responsibilities</h2><ul><li>Research relevant companies and prospects.</li><li>Draft tailored LinkedIn and email outreach.</li><li>Keep lead lists and follow-ups organized.</li><li>Support proposals with approved information.</li></ul><h2>Qualifications</h2><ul><li>Strong written English.</li><li>Clear research and analytical skills.</li><li>Curiosity about software and AI.</li><li>Comfort with spreadsheets or CRM habits.</li><li>Students and recent graduates are encouraged to apply.</li></ul><p>This is a hybrid internship based in Lahore, Pakistan. Apply by emailing your CV and relevant work to recruitment@mirasai.co.</p>",
+    description: "<p>Turn thoughtful research into useful conversations through company research, outreach writing, lead qualification and follow-ups.</p><h2>Responsibilities</h2><ul><li>Research relevant companies and prospects.</li><li>Draft tailored LinkedIn and email outreach.</li><li>Keep lead lists and follow-ups organized.</li><li>Support proposals with approved information.</li></ul><h2>Qualifications</h2><ul><li>Strong written English.</li><li>Clear research and analytical skills.</li><li>Curiosity about software and AI.</li><li>Comfort with spreadsheets or CRM tools.</li><li>Students and recent graduates are encouraged to apply.</li></ul><p>This is a hybrid internship based in Lahore, Pakistan. Apply by emailing your CV and relevant work to recruitment@mirasai.co.</p>",
   },
   marketing: {
     title: "Social Media & Visual Content Intern",
@@ -70,13 +70,13 @@ const homepageFaq = `<section class="miras-faq" id="faq"><div class="miras-faq-s
 </div></div></section>`;
 
 const servicesOverviewPage = `<main class="miras-services-overview">
-  <section class="miras-services-intro"><div class="miras-services-shell"><p class="miras-eyebrow">What we build</p><h1>Services built around real delivery</h1><p>We work where product, architecture and operations meet: the points where a polished interface still has to survive authentication, payments, real-time behaviour, native constraints, releases and production edge cases. Not just the screen, but the architecture, integrations, release pipeline, security and maintainability behind it.</p></div></section>
+  <section class="miras-services-intro"><div class="miras-services-shell"><p class="miras-eyebrow">What we build</p><h1>Services built around real delivery</h1><p>We work where product, architecture and operations meet: the points where a polished interface still has to survive authentication, payments, real-time behavior, native constraints, releases and production edge cases. Not just the screen, but the architecture, integrations, release pipeline, security and maintainability behind it.</p></div></section>
   <section class="miras-services-list" aria-label="Miras AI services"><div class="miras-services-shell">
-    <article class="miras-service-row"><div class="miras-service-summary"><span>01</span><h2>Product and platform engineering</h2><p class="miras-service-kicker">From first decision to production</p><p>We help founders and teams turn a product opportunity into a maintainable system. Discovery, experience design, frontend and backend engineering, integrations, testing and launch form one coherent delivery path.</p><p class="miras-service-audience">Founders and product teams moving from opportunity to working software.</p></div><div class="miras-service-deliverables"><p>Deliverables</p><ul><li>Product and technical discovery</li><li>MVP scope and milestones</li><li>Web and mobile application builds</li><li>API and integration design</li><li>Authentication, payments and notifications</li><li>QA, deployment, analytics and handover</li></ul><div class="miras-proven-in"><p>Proven in</p><ul><li><a href="/work/your-doctors-online">Your Doctors Online</a></li><li><a href="/work/wrap-and-co">Wrap and Co</a></li><li><a href="/work#more-products">AgriBazaar</a></li><li><a href="/work#more-products">Pukaar</a></li></ul></div></div></article>
-    <article class="miras-service-row"><div class="miras-service-summary"><span>02</span><h2>Mobile engineering</h2><p class="miras-service-kicker">For products with real complexity</p><p>We work across the app and the systems around it: architecture, native integrations, authentication, WebViews, deep links, analytics, real-time behavior and release operations.</p><p class="miras-service-audience">CTOs and engineering leads with complex mobile codebases or release bottlenecks.</p></div><div class="miras-service-deliverables"><p>Deliverables</p><ul><li>React Native feature and architecture work</li><li>iOS and Android build diagnostics</li><li>App modernization</li><li>Payment and commerce integrations</li><li>Real-time chat, audio and video</li><li>CI/CD, signing and store releases</li></ul><div class="miras-proven-in"><p>Proven in</p><ul><li><a href="/work/makro-pro">Makro PRO</a></li><li><a href="/work/aimfit">AimFit</a></li><li><a href="/work/retailo">RetailO</a></li></ul></div></div></article>
-    <article class="miras-service-row"><div class="miras-service-summary"><span>03</span><h2>Applied AI and automation</h2><p class="miras-service-kicker">Put AI to work inside a real process</p><p>A useful AI feature needs the right data, clear boundaries and a way to measure whether it helps. We design and implement retrieval, model integrations, agents and automation around actual tasks, approvals and exceptions.</p><p class="miras-service-audience">Product teams and operations leaders who need AI inside an existing workflow.</p></div><div class="miras-service-deliverables"><p>Deliverables</p><ul><li>Use-case assessment and feasibility</li><li>RAG and knowledge retrieval</li><li>LLM and provider integration</li><li>Tool-calling agents with human review</li><li>Workflow orchestration and document processes</li><li>Evaluation, observability and handover</li><li>LLM gateway: one stable interface across model providers, with routing, metering and governance</li><li>Guardrails: access control, prompt and output checks, structured responses, escalation</li><li>Local and hybrid models (Ollama, Qwen, Phi) where privacy, cost or offline access matter</li><li>On-premise deployment patterns for regulated or private workloads</li><li>Low-cost automation pipelines with queues, retries and human approval</li></ul><div class="miras-proven-in"><p>Proven in</p><ul><li><a href="/work/kaawu">KAAWU</a></li><li><a href="/work/wrap-and-co">Wrap and Co</a></li></ul></div></div></article>
-    <article class="miras-service-row"><div class="miras-service-summary"><span>04</span><h2>Voice and language data</h2><p class="miras-service-kicker">Systems shaped around your data</p><p>For teams working with calls, speech interfaces or underserved languages, we investigate transcription quality, dataset readiness, analysis and deployment choices before recommending a build.</p><p class="miras-service-audience">Contact centres and enterprises with multilingual voice or call-analysis needs.</p></div><div class="miras-service-deliverables"><p>Deliverables</p><ul><li>Call and data audit</li><li>ASR and TTS feasibility</li><li>Speech dataset preparation and quality control</li><li>Transcription and QA analytics prototypes</li><li>Agent-assist and voice-agent architecture</li><li>Privacy and on-premise deployment assessment</li><li>Voice AI architecture combining turn detection, streaming or batch ASR, an LLM or workflow layer, TTS and WebSockets</li></ul><div class="miras-proven-in"><p>Proven in</p><ul><li><a href="/work/language-data">South Asian speech and language data</a></li><li><a href="/work#ai4pakistan">AI4Pakistan</a></li></ul></div></div></article>
-    <article class="miras-service-row"><div class="miras-service-summary"><span>05</span><h2>Engineering leadership</h2><p class="miras-service-kicker">Senior technical ownership when it matters most</p><p>We help make the early decisions, unblock difficult work and keep product and engineering aligned. The engagement can be advisory, embedded or tied to a delivery scope.</p><p class="miras-service-audience">Founders and product owners who need a senior technical owner without a full-time hire.</p></div><div class="miras-service-deliverables"><p>Deliverables</p><ul><li>Feasibility and discovery</li><li>Architecture and buy-versus-build decisions</li><li>Roadmap and code review</li><li>Vendor and team assessment</li><li>Hiring and mentoring support</li><li>Delivery governance and technical acceptance</li><li>Technology strategy</li><li>Solution architecture (components, boundaries, failure modes, deployment)</li><li>Technical scoping (requirements, milestones, acceptance criteria, estimates)</li><li>Vendor and model selection (cost, privacy, latency, lock-in)</li></ul><div class="miras-proven-in"><p>Proven in</p><ul><li><a href="/work/makro-pro">Makro PRO (multi-market architecture)</a></li><li><a href="/work#ai4pakistan">AI4Pakistan</a></li></ul></div></div></article>
+    <article class="miras-service-row" id="product-platform-engineering"><div class="miras-service-summary"><span>01</span><h2>Product and platform engineering</h2><p class="miras-service-kicker">From first decision to production</p><p>We help founders and teams turn a product opportunity into a maintainable system. Discovery, experience design, frontend and backend engineering, integrations, testing and launch form one coherent delivery path.</p><p class="miras-service-audience">Founders and product teams moving from opportunity to working software.</p></div><div class="miras-service-deliverables"><p>Deliverables</p><ul><li>Product and technical discovery</li><li>MVP scope and milestones</li><li>Web and mobile application builds</li><li>API and integration design</li><li>Authentication, payments and notifications</li><li>QA, deployment, analytics and handover</li></ul><div class="miras-proven-in"><p>Proven in</p><ul><li><a href="/work/your-doctors-online">Your Doctors Online</a></li><li><a href="/work/wrap-and-co">Wrap and Co</a></li><li><a href="/work#more-products">AgriBazaar</a></li><li><a href="/work#more-products">Pukaar</a></li></ul></div></div></article>
+    <article class="miras-service-row" id="mobile-systems"><div class="miras-service-summary"><span>02</span><h2>Mobile engineering</h2><p class="miras-service-kicker">For products with real complexity</p><p>We work across the app and the systems around it: architecture, native integrations, authentication, WebViews, deep links, analytics, real-time behavior and release operations.</p><p class="miras-service-audience">CTOs and engineering leads with complex mobile codebases or release bottlenecks.</p></div><div class="miras-service-deliverables"><p>Deliverables</p><ul><li>React Native feature and architecture work</li><li>iOS and Android build diagnostics</li><li>App modernization</li><li>Payment and commerce integrations</li><li>Real-time chat, audio and video</li><li>CI/CD, signing and store releases</li></ul><div class="miras-proven-in"><p>Proven in</p><ul><li><a href="/work/makro-pro">Makro PRO</a></li><li><a href="/work/aimfit">AimFit</a></li><li><a href="/work/retailo">RetailO</a></li></ul></div></div></article>
+    <article class="miras-service-row" id="applied-ai-automation"><div class="miras-service-summary"><span>03</span><h2>Applied AI and automation</h2><p class="miras-service-kicker">Put AI to work inside a real process</p><p>A useful AI feature needs the right data, clear boundaries and a way to measure whether it helps. We design and implement retrieval, model integrations, agents and automation around actual tasks, approvals and exceptions.</p><p class="miras-service-audience">Product teams and operations leaders who need AI inside an existing workflow.</p></div><div class="miras-service-deliverables"><p>Deliverables</p><ul><li>Use-case assessment and feasibility</li><li>RAG and knowledge retrieval</li><li>LLM and provider integration</li><li>Tool-calling agents with human review</li><li>Workflow orchestration and document processes</li><li>Evaluation, observability and handover</li><li>LLM gateway: one stable interface across model providers, with routing, metering and governance</li><li>Guardrails: access control, prompt and output checks, structured responses, escalation</li><li>Local and hybrid models (Ollama, Qwen, Phi) where privacy, cost or offline access matter</li><li>On-premise deployment patterns for regulated or private workloads</li><li>Low-cost automation pipelines with queues, retries and human approval</li></ul><div class="miras-proven-in"><p>Proven in</p><ul><li><a href="/work/kaawu">KAAWU</a></li><li><a href="/work/wrap-and-co">Wrap and Co</a></li></ul></div></div></article>
+    <article class="miras-service-row" id="voice-language-data"><div class="miras-service-summary"><span>04</span><h2>Voice and language data</h2><p class="miras-service-kicker">Systems shaped around your data</p><p>For teams working with calls, speech interfaces or underserved languages, we investigate transcription quality, dataset readiness, analysis and deployment choices before recommending a build.</p><p class="miras-service-audience">Contact centers and enterprises with multilingual voice or call-analysis needs.</p></div><div class="miras-service-deliverables"><p>Deliverables</p><ul><li>Call and data audit</li><li>ASR and TTS feasibility</li><li>Speech dataset preparation and quality control</li><li>Transcription and QA analytics prototypes</li><li>Agent-assist and voice-agent architecture</li><li>Privacy and on-premise deployment assessment</li><li>Voice AI architecture combining turn detection, streaming or batch ASR, an LLM or workflow layer, TTS and WebSockets</li></ul><div class="miras-proven-in"><p>Proven in</p><ul><li><a href="/work/language-data">South Asian speech and language data</a></li><li><a href="/work#ai4pakistan">AI4Pakistan</a></li></ul></div></div></article>
+    <article class="miras-service-row" id="technical-leadership"><div class="miras-service-summary"><span>05</span><h2>Engineering leadership</h2><p class="miras-service-kicker">Senior technical ownership when it matters most</p><p>We help make the early decisions, unblock difficult work and keep product and engineering aligned. The engagement can be advisory, embedded or tied to a delivery scope.</p><p class="miras-service-audience">Founders and product owners who need a senior technical owner without a full-time hire.</p></div><div class="miras-service-deliverables"><p>Deliverables</p><ul><li>Feasibility and discovery</li><li>Architecture and buy-versus-build decisions</li><li>Roadmap and code review</li><li>Vendor and team assessment</li><li>Hiring and mentoring support</li><li>Delivery governance and technical acceptance</li><li>Technology strategy</li><li>Solution architecture (components, boundaries, failure modes, deployment)</li><li>Technical scoping (requirements, milestones, acceptance criteria, estimates)</li><li>Vendor and model selection (cost, privacy, latency, lock-in)</li></ul><div class="miras-proven-in"><p>Proven in</p><ul><li><a href="/work/makro-pro">Makro PRO (multi-market architecture)</a></li><li><a href="/work#ai4pakistan">AI4Pakistan</a></li></ul></div></div></article>
   </div></section>
   <section class="miras-ai-principles" aria-labelledby="ai-principles-title"><div class="miras-services-shell"><p class="miras-eyebrow">AI principles</p><h2 id="ai-principles-title">How we build AI systems</h2><ol><li><span>01</span><p>Start with a <strong class="kw">measurable user task</strong> and a <strong class="kw">held-out evaluation set</strong>, not a model demo.</p></li><li><span>02</span><p>Keep provider choice <strong class="kw">behind a gateway</strong>, with a controlled path to <strong class="kw">local or on-prem inference</strong>.</p></li><li><span>03</span><p>Separate <strong class="kw">retrieval quality</strong>, <strong class="kw">model quality</strong> and <strong class="kw">application reliability</strong> so failures can be diagnosed.</p></li><li><span>04</span><p>Put <strong class="kw">human approval</strong> at <strong class="kw">high-impact boundaries</strong>: publishing, payments, customer communication, clinical decisions.</p></li><li><span>05</span><p>Measure <strong class="kw">quality, latency, cost</strong> and <strong class="kw">operational burden</strong> together before calling a system <strong class="kw">production-ready</strong>.</p></li></ol></div></section>
   <section class="miras-engagements" aria-labelledby="engagement-options-title"><div class="miras-engagements-shell"><p class="miras-eyebrow">How we engage</p><h2 id="engagement-options-title">Engagement options</h2><div class="miras-engagements-grid"><article><h3>Defined project</h3><p>A scoped build with clear milestones and deliverables.</p></article><article><h3>Focused workstream</h3><p>A senior technical resource embedded in your team for a specific area.</p></article><article><h3>Delivery pod</h3><p>A small, accountable team that owns a product workstream end to end.</p></article><article><h3>White-label partner</h3><p>Technical delivery capacity for agencies and studios.</p></article><article><h3>Fractional CTO</h3><p>Architecture, roadmap and delivery ownership on a part-time basis.</p></article><article><h3>AI pilot</h3><p>A time-boxed proof of value on your real data, with an evaluation set and a clear go or no-go recommendation.</p></article></div><p class="miras-engagements-note">Availability and team composition are scoped for each engagement.</p></div></section>
@@ -122,7 +122,7 @@ function esc(value) {
 }
 
 function metaContent(html, name) {
-  return html.match(new RegExp(`<meta name=["']${name}["'] content=["']([^"']*)`, "i"))?.[1] || "";
+  return html.match(new RegExp(`<meta name=["']${name}["'] content=(["'])(.*?)\\1`, "i"))?.[2] || "";
 }
 
 function titleContent(html) {
@@ -179,7 +179,7 @@ function enhance(html, route, { preview: isPreview = false } = {}) {
       "That experience informs how Miras AI approaches architecture, delivery risk and production readiness.",
     )
     .replaceAll("Prior engineering track record", "Selected product experience");
-  if (isPreview && route.path === "/about") {
+  if (route.path === "/about") {
     html = html.replace(
       "<p class=\"text-xs text-muted-foreground/50 italic\" style=\"white-space:pre-line\">That experience informs how Miras AI approaches architecture, delivery risk and production readiness.</p>",
       '<p class="text-xs text-muted-foreground/50 italic" style="white-space:pre-line">That experience informs how Miras AI approaches architecture, delivery risk and production readiness.</p><div class="miras-leadership-stats" aria-label="Avais professional experience"><div><strong>8+ years</strong><span>Software and product engineering</span></div><div><strong>6+ years</strong><span>React Native and cross-platform systems</span></div><div><strong>4 markets</strong><span>Regional commerce delivery</span></div></div><a class="miras-professional-record" href="https://avais.me" target="_blank" rel="noopener noreferrer">View Avais’s complete professional record →</a>',
@@ -188,8 +188,8 @@ function enhance(html, route, { preview: isPreview = false } = {}) {
   if (route.path === "/work") html = html.replace("<!-- live-apps -->", () => liveApps);
   if (route.path === "/services") html = html.replace(/<main>[\s\S]*?<\/main>/, servicesOverviewPage);
   html = html.replace("</footer>", '<div class="miras-footer-wordmark" aria-hidden="true">MIRAS AI</div></footer>');
-  // Individual service pages stay published, but all on-site links point to the overview.
-  html = html.replace(/href="\/services\/[a-z-]+"/g, 'href="/services"');
+  // Individual service pages stay published, but all on-site links point to that service on the overview.
+  html = html.replace(/href="\/services\/([a-z-]+)"/g, 'href="/services#$1"');
   html = html.replace(/<meta name="robots"[^>]*>/gi, "").replace(/<meta name="googlebot"[^>]*>/gi, "");
   html = html.replace(/<link rel="canonical"[^>]*>/gi, "");
   html = html.replace(/<meta property="og:[^"]+"[^>]*>/gi, "").replace(/<meta name="twitter:[^"]+"[^>]*>/gi, "");
@@ -205,36 +205,37 @@ function enhance(html, route, { preview: isPreview = false } = {}) {
     ? "noindex, follow, noarchive"
     : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
   const head = `<meta name="robots" content="${robots}"><meta name="googlebot" content="${robots}"><link rel="canonical" href="${canonical}"><meta property="og:type" content="website"><meta property="og:site_name" content="Miras AI"><meta property="og:locale" content="en_US"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${canonical}"><meta property="og:image" content="${origin}/og-cover.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Miras AI product engineering and AI systems"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(title)}"><meta name="twitter:description" content="${esc(description)}"><meta name="twitter:image" content="${origin}/og-cover.jpg">${schemas(route, title, description)}`;
-  if (isPreview && (route.path.startsWith("/work") || route.path === "/about")) html = html.replace("</head>", `${canonicalContentStyles}</head>`);
+  if (route.path.startsWith("/work") || route.path === "/about") html = html.replace("</head>", `${canonicalContentStyles}</head>`);
   html = html.replace("</head>", `${head}</head>`);
   if (isPreview) html = html.replace(/\b(href|src|srcset|action)=(['"])\/(?!v1(?:\/|$)|v2(?:\/|$)|v3(?:\/|$))/g, "$1=$2/v3/");
   return html;
 }
 
-for (const [rel, route] of Object.entries(routes)) {
-  const input = join(source, rel);
-  const previewOutput = route.path === "/" ? join(preview, "index.html") : join(preview, route.path.slice(1), "index.html");
-  await mkdir(dirname(previewOutput), { recursive: true });
-  await writeFile(previewOutput, enhance(await readFile(input, "utf8"), route, { preview: true }));
-}
+for (const { dir, preview } of outputs) {
+  for (const [rel, route] of Object.entries(routes)) {
+    const output = route.path === "/" ? join(dir, "index.html") : join(dir, route.path.slice(1), "index.html");
+    await mkdir(dirname(output), { recursive: true });
+    await writeFile(output, enhance(await readFile(join(source, rel), "utf8"), route, { preview }));
+  }
 
-const workShell = await readFile(join(source, "work/index.html"), "utf8");
-for (const study of caseStudies) {
-  const route = { path: `/work/${study.slug}`, label: study.name };
-  const html = workShell
-    .replace(/<main[\s\S]*?<\/main>/, () => caseStudyMain(study))
-    .replace(/<title>.*?<\/title>/, () => `<title>${study.name} case study | Miras AI</title>`)
-    .replace(/<meta name="description" content="[^"]*">/, () => `<meta name="description" content="${esc(study.summary)}">`);
-  const output = join(preview, route.path.slice(1), "index.html");
-  await mkdir(dirname(output), { recursive: true });
-  await writeFile(output, enhance(html, route, { preview: true }));
-}
+  const workShell = await readFile(join(source, "work/index.html"), "utf8");
+  for (const study of caseStudies) {
+    const route = { path: `/work/${study.slug}`, label: study.name };
+    const html = workShell
+      .replace(/<main[\s\S]*?<\/main>/, () => caseStudyMain(study))
+      .replace(/<title>.*?<\/title>/, () => `<title>${study.name} case study | Miras AI</title>`)
+      .replace(/<meta name="description" content="[^"]*">/, () => `<meta name="description" content="${esc(study.summary)}">`);
+    const output = join(dir, route.path.slice(1), "index.html");
+    await mkdir(dirname(output), { recursive: true });
+    await writeFile(output, enhance(html, route, { preview }));
+  }
 
-await cp(join(source, "assets"), join(preview, "assets"), { recursive: true });
-await cp(join(source, "styles.css"), join(preview, "styles.css"));
-await cp(join(source, "site.js"), join(preview, "site.js"));
-for (const file of ["og-cover.jpg", "robots.txt", "sitemap.xml", "llms.txt", "humans.txt", "site.webmanifest", "404.html", "miras-gold-mark.png", "miras-gold-transparent.png", "miras-gold-wordmark.webp", "miras-header-logo.png", "miras-logo.png", "miras-mark.png", "miras-nav-mark.png", "miras-primary-light.png", "miras-urdu-mark.png"]) {
-  await cp(join(source, file), join(preview, file));
+  await cp(join(source, "assets"), join(dir, "assets"), { recursive: true });
+  await cp(join(source, "styles.css"), join(dir, "styles.css"));
+  await cp(join(source, "site.js"), join(dir, "site.js"));
+  for (const file of ["og-cover.jpg", "robots.txt", "sitemap.xml", "llms.txt", "humans.txt", "site.webmanifest", "404.html", "miras-gold-mark.png", "miras-gold-transparent.png", "miras-gold-wordmark.webp", "miras-header-logo.png", "miras-logo.png", "miras-mark.png", "miras-nav-mark.png", "miras-primary-light.png", "miras-urdu-mark.png"]) {
+    await cp(join(source, file), join(dir, file));
+  }
+  await cp(join(source, "projects"), join(dir, "projects"), { recursive: true });
 }
-await cp(join(source, "projects"), join(preview, "projects"), { recursive: true });
-console.log(`Assembled /v3 (${Object.keys(routes).length + caseStudies.length} pages) from ${source}.`);
+console.log(`Assembled mirasai.co and /v3 (${Object.keys(routes).length + caseStudies.length} pages each) from ${source}.`);

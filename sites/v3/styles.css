@@ -298,7 +298,7 @@ body > .min-h-screen > header {
 .miras-services-intro h1{max-width:50rem;font-size:clamp(3rem,6vw,5.4rem);line-height:.96;letter-spacing:-.055em}
 .miras-services-intro>div>p:last-child{max-width:49rem;margin-top:1.5rem;color:hsl(var(--muted-foreground));font-size:1.06rem;line-height:1.75}
 .miras-services-list{padding:0 0 clamp(4rem,7vw,6rem);background:hsl(var(--background))}
-.miras-service-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-bottom:1px solid hsl(var(--border))}
+.miras-service-row{scroll-margin-top:6rem;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-bottom:1px solid hsl(var(--border))}
 .miras-service-summary,.miras-service-deliverables{padding:clamp(2.5rem,5vw,4rem)}
 .miras-service-summary{padding-left:0}
 .miras-service-summary>span{color:hsl(var(--foreground)/.7);font-family:var(--font-mono);font-size:.72rem}

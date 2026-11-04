@@ -28,6 +28,16 @@ The company works across more than 45 South Asian languages. Public examples inc
 - Voice and language data: https://mirasai.co/services/voice-language-data
 - Engineering leadership: https://mirasai.co/services/technical-leadership
 
+## Case studies
+
+- South Asian speech and language data: https://mirasai.co/work/language-data
+- Makro PRO: https://mirasai.co/work/makro-pro
+- Your Doctors Online: https://mirasai.co/work/your-doctors-online
+- AimFit: https://mirasai.co/work/aimfit
+- RetailO: https://mirasai.co/work/retailo
+- KAAWU: https://mirasai.co/work/kaawu
+- Wrap and Co invoice system: https://mirasai.co/work/wrap-and-co
+
 ## Expert guides
 
 - React Native stabilization: https://mirasai.co/insights/react-native-stabilization
@@ -44,6 +54,8 @@ The company works across more than 45 South Asian languages. Public examples inc
 - Public LinkedIn page: https://www.linkedin.com/company/mirasai/
 - Contact: hello@mirasai.co
 - Recruitment: recruitment@mirasai.co
+- Recognized work: contributed speech data for 39 Pakistani languages to Meta's Omnilingual ASR, named one of TIME's Best Inventions of 2026
+- Initiative: AI4Pakistan (https://ai4pakistan.com), Miras AI's open AI initiative for Pakistan's languages
 
 ## Engagement facts
 
@@ -51,8 +63,8 @@ The company works across more than 45 South Asian languages. Public examples inc
 - Focused releases commonly take 4–12 weeks.
 - Defined first product releases commonly take 6–16 weeks, depending on scope and dependencies.
 - Engagements include defined projects, focused workstreams, delivery pods, embedded engineering teams, white-label delivery and fractional CTO support.
-- Miras AI aims to answer qualified project enquiries within one business day.
+- Miras AI aims to answer qualified project inquiries within one business day.
 
 ## Important attribution
 
-Case studies on the Work page describe prior engineering experience of Miras AI's CTO. The named products were developed by their respective companies and are not presented as products built by Miras AI.
+Case studies on the Work page describe products and systems the Miras AI team has engineered. Product names, logos and screenshots remain the property of their respective owners, and each case study describes the team's role.
