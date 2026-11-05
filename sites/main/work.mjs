@@ -1,4 +1,4 @@
-// Content and the shared template for the /v3 Work page app cards and case study pages. Used only by assemble-v3.mjs.
+// Work page app cards and case study pages for this site. Read by scripts/assemble-pages.mjs.
 
 const ext = (href, label) => `<a href="${href}" target="_blank" rel="noopener noreferrer">${label} <span aria-hidden="true">↗</span></a>`;
 const num = (i) => String(i + 1).padStart(2, "0");
@@ -49,6 +49,7 @@ const concept = { caption: "Concept visual", images: [
 
 export const caseStudies = [
   {
+    published: "2026-11-02", shareImage: { src: "/projects/time-omnilingual-asr.jpg", width: 1600, height: 795, alt: "TIME's Best Inventions of 2026 page for Meta Omnilingual ASR" },
     slug: "language-data", name: "South Asian speech and language data", sector: "Voice and language data",
     summary: "Speech and text data for languages that modern AI has left behind, from Meta's Omnilingual ASR to open datasets anyone can use.",
     chips: ["ASR data", "TTS datasets", "Speech translation", "Text corpora", "Annotation", "QA", "Low-resource languages"],
@@ -83,8 +84,10 @@ export const caseStudies = [
     ].map((item) => `<li>${item}</li>`).join("")}</ol>`,
   },
   {
+    published: "2026-10-30", shareImage: { src: "/projects/makro-commerce-concept.jpg", width: 1672, height: 941, alt: "Concept grocery commerce mobile interface" },
     slug: "makro-pro", name: "Makro PRO", sector: "Enterprise commerce",
     summary: "Multi-market React Native and Next.js commerce from one modular codebase.",
+    description: "Makro PRO case study: multi-market React Native and Next.js commerce from one modular codebase, live in Thailand, Cambodia, Myanmar and Malaysia.",
     chips: ["React Native", "Next.js", "TypeScript", "Feature flags", "Universal Links", "AppsFlyer", "Bitrise", "Fastlane", "GitLab CI", "CodePush"],
     live: [apps.makro, apps.psar, apps.makroMyanmar, apps.lotuss],
     media: concept,
@@ -112,8 +115,10 @@ export const caseStudies = [
     ],
   },
   {
+    published: "2026-10-30", shareImage: { src: "/projects/ydo-overview.jpg", width: 1024, height: 576, alt: "Your Doctors Online mobile doctor consultation" },
     slug: "your-doctors-online", name: "Your Doctors Online", sector: "Telemedicine",
     summary: "24/7 virtual care with real-time routing and persistent care history.",
+    description: "Your Doctors Online case study: 24/7 virtual care with real-time doctor routing, video consultations, EMR prescriptions, payments and care history.",
     chips: ["React Native", "Firebase Realtime Database", "Cloud Functions", "Agora", "WebRTC", "Stripe", "In-app purchases", "EMR / SOAP"],
     live: [apps.ydo],
     media: { images: [
@@ -145,8 +150,10 @@ export const caseStudies = [
     ],
   },
   {
+    published: "2026-10-30", shareImage: { src: "/projects/aimfit-overview.jpg", width: 832, height: 464, alt: "AimFit mobile workout experience" },
     slug: "aimfit", name: "AimFit", sector: "Health and fitness",
     summary: "Women-first fitness with live and recorded workouts, rewards and community.",
+    description: "AimFit case study: a women-first fitness app with live and recorded workouts, offline downloads, attendance-based rewards and a TypeScript rebuild.",
     chips: ["React Native", "TypeScript", "Zoom", "Mux", "Push notifications", "Dynamic links", "Bitrise", "Fastlane", "CodePush"],
     live: [apps.aimfit],
     media: { images: [
@@ -158,11 +165,11 @@ export const caseStudies = [
     modules: [
       ["Live workouts", "Live classes through Zoom."],
       ["Recorded library", "Optimized streaming and controlled downloads."],
-      ["Nutrition tracking"],
-      ["Community and support"],
-      ["Leaderboard"],
+      ["Nutrition tracking", "Meal and progress tracking as part of a wider wellness and accountability journey."],
+      ["Community and support", "Community activity plus coaching and support conversations that help members stay consistent."],
+      ["Leaderboard", "Ranks members by points earned through workouts, tracking, content and community activity."],
       ["Rewards", "Attendance-based reward points and completion rewards."],
-      ["Notifications and dynamic links"],
+      ["Notifications and dynamic links", "Push notifications and dynamic links that bring members back to workouts, programs and community activity."],
     ],
     highlights: `${list([
       "Chunked background downloads that never block active streaming, with one shared progress model across live, recorded and offline content.",
@@ -176,17 +183,19 @@ export const caseStudies = [
     ],
   },
   {
+    published: "2026-10-30",
     slug: "retailo", name: "RetailO", sector: "B2B commerce",
     summary: "Marketplace ordering and local payments for retailers.",
+    description: "RetailO case study: B2B marketplace ordering for 50,000+ retailers, with buyer and seller journeys and payments via JazzCash, EasyPaisa and BNPL.",
     chips: ["React Native", "Marketplace", "JazzCash", "EasyPaisa", "BNPL", "Dynamic links"],
     live: [apps.retailo],
     overview: "<p>A B2B commerce platform retailers use for digital inventory ordering and restocking. We built buyer and seller journeys and payment flows designed around local banking and wallet behavior.</p>",
     modules: [
       ["Marketplace", "Discovery, buyer and seller flows, cart and ordering."],
       ["Local payments", "JazzCash and EasyPaisa."],
-      ["BNPL and installments"],
-      ["Customer history"],
-      ["Wishlist and favorites"],
+      ["BNPL and installments", "Buy-now-pay-later and installment options using JazzCash and EasyPaisa as the payment rails."],
+      ["Customer history", "Order history and account context for repeat purchasing and support."],
+      ["Wishlist and favorites", "Saved products so buyers can return to planned purchases."],
       ["Engagement", "Dynamic links and notifications."],
     ],
     scale: [
@@ -196,8 +205,10 @@ export const caseStudies = [
     ],
   },
   {
+    published: "2026-10-30", shareImage: { src: "/projects/card-kaawu-profile.jpg", width: 1280, height: 720, alt: "KAAWU Instagram profile: Tiny crow. Big maslay." },
     slug: "kaawu", name: "KAAWU", sector: "AI content operations",
     summary: "A low-cost AI media pipeline that produces character-led reels with human approval.",
+    description: "KAAWU case study: a low-cost, queue-driven AI media pipeline that produces character-led Urdu reels for Instagram, with quality checks and human approval.",
     chips: ["AI image and video generation", "Prompt generation", "Browser automation", "Job queue", "Retries", "Upscaling", "Instagram publishing"],
     follow,
     heroAside: igLink(picture({ src: "/projects/kaawu-grid.png", webp: "/projects/kaawu-grid.webp", alt: "KAAWU Instagram profile showing a grid of character-led Urdu reels", width: 959, height: 1212 }), "miras-case-hero-image"),
@@ -205,9 +216,9 @@ export const caseStudies = [
     challenge: "Produce a steady stream of on-brand, character-consistent short videos without a production team, and without low-quality output ever reaching the public.",
     modules: [
       ["Content queue", "Traceable jobs with status, inputs, outputs, failures and retry state."],
-      ["Concept and mood"],
+      ["Concept and mood", "Turns brand goals into a repeatable concept, tone, visual mood and character direction."],
       ["Identity rules", "Consistent character and brand cues."],
-      ["Prompt generation"],
+      ["Prompt generation", "Image and motion prompts generated from the approved concept and brand context."],
       ["Image and video creation", "Browser automation for Google-based flows where direct APIs are limited."],
       ["Quality and upscaling", "1080p delivery, with low-quality items blocked."],
       ["Publishing package", "Captions, hashtags, cloud delivery and Instagram publishing."],
@@ -216,8 +227,10 @@ export const caseStudies = [
     highlights: "<p>We separate creative intent from execution, keep every stage observable, and spend human attention only on approval and exceptions. The same pattern applies to any repetitive content or document operation.</p>",
   },
   {
+    published: "2026-10-30", shareImage: { src: "/projects/wrapco-invoice.jpg", width: 1600, height: 890, alt: "Wrap and Co invoice builder beside the branded invoice preview" },
     slug: "wrap-and-co", name: "Wrap and Co invoice system", sector: "Workflow automation",
     summary: "A no-code invoicing workflow with reusable business rules and branded output.",
+    description: "Wrap and Co case study: a no-code invoicing workflow for a gifting brand, with saved services, flexible pricing, partial payments and branded invoices.",
     chips: ["No-code", "Business rules", "Partial payments", "Shareable preview", "PDF"],
     image: { src: "/projects/wrapco-invoice.jpg", webp: "/projects/wrapco-invoice.webp", alt: "Wrap and Co invoice builder with saved services and pricing rules beside the branded invoice preview", width: 1600, height: 890, caption: "Invoice builder and customer preview, shown with sample data." },
     overview: "<p>Wrap and Co is a gifting brand built around one promise: <strong class='kw'>“Thoughtful gifting, beautifully wrapped.”</strong> Its invoices had to look as considered as its gift boxes.</p><p>This system turns a recurring manual invoicing process into a reusable workflow. Operators build an invoice from saved services, apply pricing rules, add customer messaging and share a polished result without rebuilding the document each time.</p><p>It is a focused invoicing and customer document system, not accounting or ERP software.</p>",
@@ -228,7 +241,7 @@ export const caseStudies = [
       ["Partial payments", "Prepaid amounts, balances and payment method."],
       ["Branded messaging", "Event-specific greetings and notes."],
       ["Preview and sharing", "A shareable link and PDF output."],
-      ["Operational reuse"],
+      ["Operational reuse", "Stores repeatable invoice logic so the team never re-enters the same services and pricing for each customer."],
     ],
   },
 ];

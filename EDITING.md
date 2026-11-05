@@ -5,18 +5,20 @@ Edit the file, then release (see `RELEASING.md`). One release updates all of the
 
 | Website | Folder | What the files are |
 |---|---|---|
-| mirasai.co **and** mirasai.co/v3 | `sites/v3/` | Plain HTML pages (one source, built twice) |
+| mirasai.co | `sites/main/` | Plain HTML pages |
+| mirasai.co/v3 | `sites/v3/` | Plain HTML pages (try changes here first) |
 | mirasai.co/v1 | `sites/v1/` | Plain HTML pages |
 | mirasai.co/v2 | `sites/v2/` | React components (`.tsx`) |
 
-`sites/main/` is the previous mirasai.co (live until November 2026). It is kept
-for reference only; nothing builds from it.
+To move everything from /v3 to mirasai.co, replace `sites/main/` with a copy of
+`sites/v3/` (the build adds the right SEO tags to each).
 
 ## Find a page
 
 Each page is `index.html` inside a folder named like its address:
 
-- `mirasai.co/about` and `mirasai.co/v3/about` → `sites/v3/about/index.html`
+- `mirasai.co/about` → `sites/main/about/index.html`
+- `mirasai.co/v3/about` → `sites/v3/about/index.html`
 - `mirasai.co/v1/contact` → `sites/v1/contact/index.html`
 - Home page → `index.html` directly in the site's folder
 
@@ -25,18 +27,18 @@ across the `sites/` folder (in VS Code, Cmd+Shift+F).
 
 ## Text that is not in the page files
 
-A few sections are added by the build scripts, so search there too if a
-sentence is not found under `sites/`:
+A few sections are added by the build from two text files inside each site
+folder, so search there too if a sentence is not in a page:
 
 | Website | Section | File |
 |---|---|---|
-| mirasai.co and /v3 | Services page body, home page FAQ, careers job descriptions, service page descriptions | `scripts/assemble-v3.mjs` |
-| mirasai.co and /v3 | Work page app cards and every case study page (`/work/...`) | `scripts/v3-work.mjs` |
+| Any | Services page body, home page FAQ, careers job descriptions, service page descriptions | `content.mjs` in the site folder |
+| Any | Work page app cards and every case study page (`/work/...`) | `work.mjs` in the site folder |
 
 ## Styles and images
 
 - Styles: `styles.css` in each HTML site's folder; for v2, `sites/v2/index.css`.
-- Images for mirasai.co and v3: `sites/v3/projects/`.
+- Images for mirasai.co: `sites/main/projects/`; for v3: `sites/v3/projects/`.
 - Images for v2: `public/`.
 
 ## Check before releasing

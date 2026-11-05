@@ -1,4 +1,4 @@
-// Builds the /v1 and /v2 archives. mirasai.co itself is built from sites/v3 by assemble-v3.mjs.
+// Builds the /v1 and /v2 archives. mirasai.co and /v3 are built by assemble-pages.mjs.
 import { cp, mkdir, readFile, readdir, rm, stat, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 

@@ -4,8 +4,8 @@
   "description": "Product engineering, applied AI, mobile systems and multilingual language-data services.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#080a12",
-  "theme_color": "#080a12",
+  "background_color": "#fafafa",
+  "theme_color": "#fafafa",
   "icons": [
     {
       "src": "/miras-mark.png",

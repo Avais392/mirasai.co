@@ -457,3 +457,19 @@ body > .min-h-screen > header {
 .miras-case-section-body .kw{font-weight:600;color:hsl(var(--foreground))}
 .miras-app-reach{margin-top:.9rem;color:hsl(var(--muted-foreground));font-size:.8rem}
 .miras-app-reach strong{margin-right:.3rem;color:hsl(var(--foreground));font-family:var(--font-heading);font-size:1.05rem}
+
+.miras-service-more{display:inline-flex;gap:.35rem;margin-top:1.25rem;color:hsl(var(--accent));font-size:.88rem;font-weight:700}
+.miras-service-more:hover{text-decoration:underline;text-underline-offset:.25rem}
+
+/* Phones: tighter home hero without the decorative outlines, a slimmer cookie bar, and small labels at 12px. */
+@media(max-width:640px){
+  #hero{min-height:auto;padding-top:0}
+  #hero>[aria-hidden="true"]{display:none}
+  #hero>.max-w-7xl{padding-top:3rem;padding-bottom:4rem}
+  .miras-cookie-banner{right:0;bottom:0;width:100vw;padding:.75rem 1rem;border-width:1px 0 0}
+  .miras-cookie-inner{gap:.55rem}
+  .miras-cookie-inner h3{display:none}
+  .miras-cookie-inner p{margin:0}
+  .miras-cookie-actions button{padding:.42rem .85rem}
+  .miras-legal-dates dt,.miras-related>p,.miras-service-aside span,.miras-service-deliverables>p,.miras-proven-in>p,.miras-app-card>p:first-child{font-size:.75rem}
+}
