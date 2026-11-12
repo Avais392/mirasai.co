@@ -35,6 +35,12 @@
 
       try {
         var payload = Object.fromEntries(new FormData(form).entries());
+        // Spam trap: people never see the _honey field, so only bots fill it in. Skip sending and look normal to them.
+        if (payload._honey) {
+          feedback.textContent = "Thank you. Your message has been sent to Miras AI.";
+          form.reset();
+          return;
+        }
         var result = await fetch("https://formsubmit.co/ajax/hello@mirasai.co", {
           method: "POST",
           headers: { "Content-Type": "application/json", "Accept": "application/json" },

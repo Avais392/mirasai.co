@@ -4,7 +4,6 @@ const ext = (href, label) => `<a href="${href}" target="_blank" rel="noopener no
 const num = (i) => String(i + 1).padStart(2, "0");
 
 const sources = {
-  time: "https://time.com/collection/best-inventions/2026/meta-omnilingual-asr/",
   makroNews: "https://www.cpaxtra.com/en/newsroom/news/499/makro-pro-ranked-no1-grocery-e-commerce-platform-in-thailand-by-euromonitor-international-a-global-leader-in-market-analysis-and-research",
   ydoConsultations: "https://yourdoctors.online/newsroom/your-doctors-online-crosses-1-5-million-virtual-consultations-in-canada-the-u-s/",
   ydoPatients: "https://yourdoctors.online/newsroom/your-doctors-online-reports-serving-more-than-1-million-patients-through-its-virtual-healthcare-platform/",
@@ -89,16 +88,16 @@ export const caseStudies = [
     ],
   },
   {
-    published: "2026-11-02", shareImage: { src: "/projects/time-omnilingual-asr.jpg", width: 1600, height: 795, alt: "TIME's Best Inventions of 2026 page for Meta Omnilingual ASR" },
+    published: "2026-11-02", shareImage: { src: "/projects/meta-omnilingual-asr-share.jpg", width: 1200, height: 630, alt: "Meta's announcement of Omnilingual ASR for 1,600+ languages" },
     slug: "language-data", name: "South Asian speech and language data", sector: "Voice and language data",
     summary: "Speech and text data for languages that modern AI has left behind, from Meta's Omnilingual ASR to open datasets anyone can use.",
     chips: ["ASR data", "TTS datasets", "Speech translation", "Text corpora", "Annotation", "QA", "Low-resource languages"],
     linksLabel: "Links",
-    links: `${ext(sources.time, "TIME")}${ext(sources.meta, "Meta announcement")}${ext(sources.datasets, "Our datasets on Mozilla Data Collective")}${ext(sources.ai4pakistan, "AI4Pakistan")}`,
+    links: `${ext(sources.meta, "Meta announcement")}${ext(sources.datasets, "Our datasets on Mozilla Data Collective")}${ext(sources.ai4pakistan, "AI4Pakistan")}`,
     heroAside: '<div class="miras-case-hero-stat"><strong>39</strong><span>Pakistani languages with our speech data in Omnilingual ASR</span></div>',
     overview: "<p>Hundreds of millions of people speak Saraiki, Sindhi, Pashto, Balochi, Burushaski and other South Asian languages that have little or no representation in the data that trains speech recognition, translation and language models. We build that data: we source it with speaker communities, universities and local partners, then annotate, validate and publish it.</p><!-- TODO: add total hours of speech and number of speakers once confirmed by the team -->",
     challenge: "Low-resource languages have few speakers online, little written material and no ready-made datasets. Data has to be collected in the field, transcribed by native speakers and checked carefully, or the resulting models simply don't work.",
-    extra: [["Meta Omnilingual ASR", `<p>Meta's FAIR team released Omnilingual ASR in November 2025: open-source speech recognition for 1,600+ languages, around 500 of them never transcribed by AI before, with character error rates below 10% for 78% of languages. TIME named it one of the Best Inventions of 2026. We contributed speech data for 39 Pakistani languages to it.</p><p class="miras-work-links">${ext(sources.time, "TIME")}${ext(sources.meta, "Meta announcement")}</p>${figure({ src: "/projects/time-omnilingual-asr.jpg", webp: "/projects/time-omnilingual-asr.webp", alt: "TIME's Best Inventions of 2026 page for Meta Omnilingual ASR, showing Meta's language coverage globe", width: 1600, height: 795, caption: "Meta Omnilingual ASR in TIME's Best Inventions of 2026." })}`],
+    extra: [["Meta Omnilingual ASR", `<p>Meta's FAIR team released Omnilingual ASR in November 2025: open-source speech recognition for 1,600+ languages, around 500 of them never transcribed by AI before, with character error rates below 10% for 78% of languages. TIME named it one of the Best Inventions of 2026. We contributed speech data for 39 Pakistani languages to it.</p><p class="miras-work-links">${ext(sources.meta, "Meta announcement")}</p>${figure({ src: "/projects/meta-omnilingual-asr-coverage.jpg", webp: "/projects/meta-omnilingual-asr-coverage.webp", alt: "Omnilingual ASR language coverage table and chart from Meta's announcement: 1,600 languages, compared with 99 for Whisper", width: 940, height: 1040, caption: "Language coverage, from Meta's Omnilingual ASR announcement." })}`],
       ["AI4Pakistan", `<p>AI4Pakistan is our open AI initiative for Pakistan's languages. Its pitch is simple: <strong class="kw">“AI that understands Pakistan.”</strong> It offers open speech models, datasets and tools for Urdu, Punjabi, Sindhi, Pashto and Saraiki, so the data work above becomes products people can build on.</p>${figure({ src: "/projects/ai4pakistan-home.jpg", webp: "/projects/ai4pakistan-home.webp", alt: "AI4Pakistan home page: AI that understands Pakistan, with a speech-to-text and AI response demo in Urdu", width: 1600, height: 570, caption: "ai4pakistan.com, a Miras AI initiative." })}<p>The stack covers the full path from data to deployment:</p>${list([
         "<strong>Sunno</strong>, speech to text: accurate transcription for real-world Pakistani speech.",
         "<strong>Awaz</strong>, text to speech: natural, expressive voices in multiple languages.",

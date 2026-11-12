@@ -98,12 +98,12 @@ body > .min-h-screen > header {
 .page-contact .miras-contact-form { display:flex; flex-direction:column; gap:1.35rem; }
 .page-contact .miras-contact-form > .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.25rem; }
 .page-contact .miras-contact-form label { display:block; margin-bottom:.55rem; }
-.page-contact .miras-contact-form input:not([name="_gotcha"]),
+.page-contact .miras-contact-form input:not([name="_honey"]),
 .page-contact .miras-contact-form select,
 .page-contact .miras-contact-form textarea { width:100%; max-width:100%; min-width:0; min-height:3.25rem; padding:.85rem 1rem; color:hsl(var(--foreground)); background:hsl(var(--background)); border:1px solid hsl(var(--border)); border-radius:0; font:inherit; font-size:.9rem; line-height:1.5; outline:none; transition:border-color .18s ease,box-shadow .18s ease,background-color .18s ease; }
 .page-contact .miras-contact-form textarea { min-height:9.5rem; resize:vertical; }
 .page-contact .miras-contact-form select { cursor:pointer; }
-.page-contact .miras-contact-form input:not([name="_gotcha"]):focus,
+.page-contact .miras-contact-form input:not([name="_honey"]):focus,
 .page-contact .miras-contact-form select:focus,
 .page-contact .miras-contact-form textarea:focus { background:#fff; border-color:hsl(var(--accent)); box-shadow:0 0 0 3px hsl(var(--accent)/.1); }
 .page-contact .miras-contact-form button { min-height:3.25rem; padding:.9rem 1.4rem; border:1px solid hsl(var(--primary)); }
@@ -382,6 +382,7 @@ body > .min-h-screen > header {
 .miras-proven-in{margin-top:1.75rem;padding-top:1.25rem;border-top:1px solid hsl(var(--border))}
 .miras-proven-in>p{color:hsl(var(--foreground)/.7);font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
 .miras-service-deliverables .miras-proven-in ul{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem}
+.miras-service-columns .miras-proven-in ul{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem}
 .miras-service-deliverables .miras-proven-in li{padding:0}
 .miras-service-deliverables .miras-proven-in li::before{content:none}
 .miras-proven-in a{display:inline-block;padding:.4rem .65rem;border:1px solid hsl(var(--border));background:hsl(var(--background));color:hsl(var(--foreground));font-size:.75rem;font-weight:600}
